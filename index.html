@@ -3,1265 +3,529 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MTS – Mario Training Solution</title>
+<title>MTS – Mario Training Solution | HSE Advisory Dublin</title>
+<meta name="description" content="Professional HSE advisory, safety documentation, and certified training for the construction industry in Dublin. Bilingual English & Romanian.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
-
 <style>
-/* ===== RESET & BASE ===== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --navy:    #0b1727;
-  --navy2:   #0f2040;
-  --navy3:   #162d52;
-  --orange:  #f97316;
-  --amber:   #fbbf24;
-  --white:   #f8faff;
-  --gray:    #9ab0c9;
-  --card-bg: #111f35;
-  --radius:  12px;
-  --transition: 0.35s cubic-bezier(.4,0,.2,1);
-}
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  font-family: 'Nunito Sans', sans-serif;
-  background: var(--navy);
-  color: var(--white);
-  overflow-x: hidden;
-  cursor: default;
-}
-a { text-decoration: none; color: inherit; }
-img { max-width: 100%; display: block; }
-::selection { background: var(--orange); color: #fff; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0b1727;--navy2:#0f2040;--navy3:#162d52;--orange:#f97316;--amber:#fbbf24;--white:#f8faff;--gray:#9ab0c9;--card-bg:#111f35;--radius:12px;--transition:0.35s cubic-bezier(.4,0,.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--orange);color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:3px}
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 3px; }
+/* ===== LANGUAGE SYSTEM - CLEAN & RELIABLE ===== */
+.en{display:block}.ro{display:none}
+.en-i{display:inline}.ro-i{display:none}
+body.lang-ro .en{display:none !important}
+body.lang-ro .ro{display:block !important}
+body.lang-ro .en-i{display:none !important}
+body.lang-ro .ro-i{display:inline !important}
 
-/* ===== NAV ===== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5vw;
-  height: 72px;
-  background: rgba(11,23,39,0.92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(249,115,22,0.15);
-  transition: var(--transition);
-}
-nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.5); }
-.nav-logo {
-  display: flex; align-items: center; gap: 12px;
-}
-.nav-logo-badge {
-  width: 44px; height: 44px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--orange), var(--amber));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Oswald', sans-serif;
-  font-size: 15px; font-weight: 700; color: #fff;
-  letter-spacing: 1px;
-  box-shadow: 0 0 18px rgba(249,115,22,0.4);
-}
-.nav-logo-text {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 20px; font-weight: 800; letter-spacing: 1px;
-  line-height: 1.1;
-}
-.nav-logo-text span { color: var(--orange); }
-.nav-links {
-  display: flex; align-items: center; gap: 2rem; list-style: none;
-}
-.nav-links a {
-  font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
-  text-transform: uppercase; color: var(--gray);
-  transition: var(--transition); position: relative; padding-bottom: 4px;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 0;
-  width: 0; height: 2px; background: var(--orange);
-  transition: var(--transition);
-}
-.nav-links a:hover { color: var(--white); }
-.nav-links a:hover::after { width: 100%; }
-.nav-right { display: flex; align-items: center; gap: 1rem; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;background:rgba(11,23,39,0.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(249,115,22,0.15);transition:var(--transition)}
+nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,0.5)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-badge{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--orange),var(--amber));display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:1px;box-shadow:0 0 18px rgba(249,115,22,0.4)}
+.nav-logo-text{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;letter-spacing:1px;line-height:1.1}
+.nav-logo-text span{color:var(--orange)}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);transition:var(--transition);position:relative;padding-bottom:4px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--orange);transition:var(--transition)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.lang-toggle{display:flex;background:rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.12)}
+.lang-btn{padding:7px 16px;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer;transition:var(--transition);color:var(--gray);border:none;background:transparent;font-family:'Nunito Sans',sans-serif}
+.lang-btn.active{background:var(--orange);color:#fff;box-shadow:0 0 12px rgba(249,115,22,0.4)}
+.menu-btn{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.menu-btn span{display:block;width:24px;height:2px;background:var(--white);transition:var(--transition)}
+.mobile-menu{display:none;flex-direction:column;gap:1rem;position:fixed;top:72px;left:0;right:0;z-index:999;background:rgba(11,23,39,0.98);backdrop-filter:blur(14px);padding:2rem 5vw;border-bottom:1px solid rgba(249,115,22,0.15)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:18px;font-weight:700;color:var(--gray);letter-spacing:1px;text-transform:uppercase}
+.mobile-menu a:hover{color:var(--orange)}
 
-/* Language Toggle */
-.lang-toggle {
-  display: flex; background: rgba(255,255,255,0.08);
-  border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12);
-}
-.lang-btn {
-  padding: 6px 14px; font-size: 12px; font-weight: 700;
-  letter-spacing: 1.5px; cursor: pointer; transition: var(--transition);
-  color: var(--gray); border: none; background: transparent;
-  font-family: 'Nunito Sans', sans-serif;
-}
-.lang-btn.active {
-  background: var(--orange); color: #fff;
-  box-shadow: 0 0 12px rgba(249,115,22,0.4);
-}
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;padding:0 5vw;padding-top:72px}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 70% 40%,rgba(249,115,22,0.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(251,191,36,0.06) 0%,transparent 50%),linear-gradient(135deg,#0b1727 0%,#0f2040 50%,#0b1727 100%)}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(249,115,22,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(249,115,22,0.06) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse at center,black 40%,transparent 80%);mask-image:radial-gradient(ellipse at center,black 40%,transparent 80%)}
+.hero-diagonal{position:absolute;right:-5%;top:0;bottom:0;width:55%;z-index:0;background:linear-gradient(135deg,rgba(249,115,22,0.07) 0%,rgba(251,191,36,0.04) 100%);clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
+.hero-shape{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.12;animation:floatShape 8s ease-in-out infinite}
+.hero-shape-1{width:500px;height:500px;background:var(--orange);top:-150px;right:10%}
+.hero-shape-2{width:300px;height:300px;background:var(--amber);bottom:0;right:35%;animation-delay:3s}
+@keyframes floatShape{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.3);border-radius:100px;padding:6px 18px;margin-bottom:2rem;animation:fadeUp 0.8s ease both 0.1s}
+.hero-eyebrow-dot{width:8px;height:8px;background:var(--orange);border-radius:50%;animation:pulse 2s ease infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,0.5)}50%{box-shadow:0 0 0 8px transparent}}
+.hero-eyebrow span{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange)}
+.hero-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:900;line-height:0.95;text-transform:uppercase;letter-spacing:-1px;animation:fadeUp 0.8s ease both 0.2s}
+.hero-headline .line2{color:var(--orange);display:block}
+.hero-sub{margin:1.5rem 0 2.5rem;font-size:clamp(1rem,2vw,1.2rem);color:var(--gray);max-width:500px;line-height:1.7;animation:fadeUp 0.8s ease both 0.35s}
+.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2.5rem;animation:fadeUp 0.8s ease both 0.45s}
+.badge{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--gray)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp 0.8s ease both 0.55s}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--orange),#e55c00);color:#fff;padding:16px 32px;border-radius:10px;font-weight:700;font-size:15px;letter-spacing:0.5px;border:none;cursor:pointer;transition:var(--transition);box-shadow:0 8px 32px rgba(249,115,22,0.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(249,115,22,0.5)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);padding:16px 32px;border-radius:10px;font-weight:700;font-size:15px;letter-spacing:0.5px;border:1px solid rgba(255,255,255,0.2);cursor:pointer;transition:var(--transition)}
+.btn-outline:hover{background:rgba(255,255,255,0.08);transform:translateY(-3px);border-color:rgba(255,255,255,0.4)}
+.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s ease both 1s}
+.scroll-indicator span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--orange),transparent);animation:scrollDown 2s ease infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.01%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero-card{position:absolute;right:5vw;top:50%;transform:translateY(-50%);z-index:2;background:var(--card-bg);border:1px solid rgba(249,115,22,0.2);border-radius:20px;padding:2rem;width:min(380px,90vw);box-shadow:0 32px 80px rgba(0,0,0,0.5);animation:fadeLeft 0.8s ease both 0.5s;display:flex;flex-direction:column;gap:1.25rem}
+@keyframes fadeLeft{from{opacity:0;transform:translateY(-50%) translateX(40px)}to{opacity:1;transform:translateY(-50%) translateX(0)}}
+.profile-row{display:flex;align-items:center;gap:16px}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--amber));display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 0 20px rgba(249,115,22,0.4)}
+.profile-info h3{font-size:18px;font-weight:700}
+.profile-info p{font-size:13px;color:var(--orange);font-weight:600;margin-top:2px}
+.profile-info small{font-size:12px;color:var(--gray)}
+.card-divider{height:1px;background:rgba(255,255,255,0.07)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-item{background:rgba(255,255,255,0.04);border-radius:10px;padding:14px;text-align:center}
+.stat-item .num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--orange);line-height:1}
+.stat-item .lbl{font-size:11px;color:var(--gray);margin-top:4px}
+.cert-badges{display:flex;flex-wrap:wrap;gap:8px}
+.cert-badge{background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.25);border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;color:var(--orange);letter-spacing:0.5px}
 
-/* Mobile menu button */
-.menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-.menu-btn span { display: block; width: 24px; height: 2px; background: var(--white); transition: var(--transition); }
+/* SECTIONS */
+section{padding:6rem 5vw}
+.section-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:1rem}
+.section-tag::before{content:'';display:block;width:24px;height:2px;background:var(--orange)}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:1.5rem}
+.section-title em{color:var(--orange);font-style:normal}
+.section-desc{font-size:1.05rem;color:var(--gray);max-width:620px;line-height:1.75}
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
-  position: relative;
-  display: flex; align-items: center;
-  overflow: hidden;
-  padding: 0 5vw;
-  padding-top: 72px;
-}
-.hero-bg {
-  position: absolute; inset: 0; z-index: 0;
-  background: radial-gradient(ellipse at 70% 40%, rgba(249,115,22,0.12) 0%, transparent 60%),
-              radial-gradient(ellipse at 20% 80%, rgba(251,191,36,0.06) 0%, transparent 50%),
-              linear-gradient(135deg, #0b1727 0%, #0f2040 50%, #0b1727 100%);
-}
-.hero-grid {
-  position: absolute; inset: 0; z-index: 0;
-  background-image:
-    linear-gradient(rgba(249,115,22,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(249,115,22,0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-}
-/* Diagonal accent */
-.hero-diagonal {
-  position: absolute; right: -5%; top: 0; bottom: 0;
-  width: 55%; z-index: 0;
-  background: linear-gradient(135deg, rgba(249,115,22,0.07) 0%, rgba(251,191,36,0.04) 100%);
-  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
-}
-/* Animated floating shapes */
-.hero-shape {
-  position: absolute; border-radius: 50%;
-  filter: blur(80px); opacity: 0.12; animation: floatShape 8s ease-in-out infinite;
-}
-.hero-shape-1 { width: 500px; height: 500px; background: var(--orange); top: -150px; right: 10%; animation-delay: 0s; }
-.hero-shape-2 { width: 300px; height: 300px; background: var(--amber); bottom: 0; right: 35%; animation-delay: 3s; }
-@keyframes floatShape {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-30px) scale(1.05); }
-}
+/* STATS BAR */
+.stats-bar{background:linear-gradient(90deg,var(--orange) 0%,#e55c00 50%,var(--amber) 100%);padding:2.5rem 5vw;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+.stats-bar .s-num{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:900;line-height:1;color:#fff}
+.stats-bar .s-label{font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);margin-top:4px}
 
-.hero-content {
-  position: relative; z-index: 2;
-  max-width: 700px;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.3);
-  border-radius: 100px; padding: 6px 18px; margin-bottom: 2rem;
-  animation: fadeUp 0.8s ease both; animation-delay: 0.1s;
-}
-.hero-eyebrow-dot {
-  width: 8px; height: 8px; background: var(--orange); border-radius: 50%;
-  animation: pulse 2s ease infinite;
-}
-@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,0.5)} 50%{box-shadow:0 0 0 8px transparent} }
-.hero-eyebrow span { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); }
+/* ABOUT */
+.about-section{background:var(--navy2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto}
+.about-img-wrap{position:relative}
+.about-img-box{width:100%;aspect-ratio:3/4;max-height:500px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,var(--navy3),var(--card-bg));display:flex;align-items:center;justify-content:center;border:1px solid rgba(249,115,22,0.2)}
+.about-img-placeholder{text-align:center;color:var(--gray);font-size:14px;padding:2rem}
+.about-img-placeholder .initials{font-family:'Barlow Condensed',sans-serif;font-size:80px;font-weight:900;color:var(--orange);opacity:0.4;line-height:1;display:block;margin-bottom:1rem}
+.about-img-corner{position:absolute;bottom:-20px;right:-20px;width:100px;height:100px;background:linear-gradient(135deg,var(--orange),var(--amber));border-radius:20px;z-index:-1;opacity:0.3}
+.about-orange-dot{position:absolute;top:-16px;left:-16px;width:60px;height:60px;border-radius:50%;background:var(--orange);opacity:0.15;filter:blur(20px)}
+.about-experience-badge{position:absolute;bottom:2rem;right:-2rem;background:linear-gradient(135deg,var(--orange),var(--amber));border-radius:14px;padding:16px 20px;text-align:center;box-shadow:0 16px 40px rgba(249,115,22,0.3)}
+.about-experience-badge .years{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;color:#fff;line-height:1}
+.about-experience-badge .ytext{font-size:12px;font-weight:700;color:rgba(255,255,255,0.9)}
+.about-text{display:flex;flex-direction:column;gap:1.5rem}
+.skill-bar-group{display:flex;flex-direction:column;gap:12px}
+.skill-bar-label{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;font-weight:600}
+.skill-bar-label span:last-child{color:var(--orange)}
+.skill-bar-track{height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--amber));border-radius:3px;width:0;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
 
-.hero-headline {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(3.5rem, 8vw, 7rem);
-  font-weight: 900; line-height: 0.95;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  animation: fadeUp 0.8s ease both; animation-delay: 0.2s;
-}
-.hero-headline .line2 { color: var(--orange); display: block; }
-.hero-headline .mts { 
-  font-size: 0.65em; 
-  background: linear-gradient(90deg, var(--orange), var(--amber));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
+/* SERVICES */
+.services-section{background:var(--navy)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem;max-width:1200px}
+.service-card{background:var(--card-bg);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:2rem;transition:var(--transition);position:relative;overflow:hidden;cursor:default}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber));transform:scaleX(0);transform-origin:left;transition:var(--transition)}
+.service-card:hover{transform:translateY(-6px);border-color:rgba(249,115,22,0.3);box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:52px;height:52px;border-radius:12px;background:rgba(249,115,22,0.12);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:1.25rem;border:1px solid rgba(249,115,22,0.2);transition:var(--transition)}
+.service-card:hover .service-icon{background:rgba(249,115,22,0.2)}
+.service-card h3{font-size:1.1rem;font-weight:700;margin-bottom:0.75rem}
+.service-card p{font-size:14px;color:var(--gray);line-height:1.65}
+.service-card-number{position:absolute;top:1.5rem;right:1.5rem;font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1}
 
-.hero-sub {
-  margin: 1.5rem 0 2.5rem;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: var(--gray);
-  max-width: 500px;
-  line-height: 1.7;
-  animation: fadeUp 0.8s ease both; animation-delay: 0.35s;
-}
+/* TRAINING */
+.training-section{background:var(--navy2)}
+.training-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start;max-width:1200px}
+.training-courses{display:flex;flex-direction:column;gap:12px;margin-top:3rem}
+.course-card{display:flex;align-items:center;gap:16px;background:var(--card-bg);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:1.25rem 1.5rem;transition:var(--transition);cursor:default}
+.course-card:hover{border-color:rgba(249,115,22,0.3);transform:translateX(6px)}
+.course-icon{font-size:28px;flex-shrink:0}
+.course-info h4{font-size:15px;font-weight:700}
+.course-info p{font-size:13px;color:var(--gray);margin-top:2px}
+.course-badge{margin-left:auto;background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.25);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--orange);white-space:nowrap;flex-shrink:0}
+.training-why{margin-top:3rem}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:2rem}
+.why-card{background:linear-gradient(135deg,var(--card-bg),rgba(249,115,22,0.05));border:1px solid rgba(249,115,22,0.15);border-radius:14px;padding:1.75rem;text-align:center}
+.why-card .why-icon{font-size:36px;margin-bottom:0.75rem}
+.why-card h4{font-weight:700;margin-bottom:6px}
+.why-card p{font-size:13px;color:var(--gray)}
 
-.hero-badges {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  margin-bottom: 2.5rem;
-  animation: fadeUp 0.8s ease both; animation-delay: 0.45s;
-}
-.badge {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 100px; padding: 8px 18px;
-  font-size: 13px; font-weight: 600; color: var(--gray);
-}
-.badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+/* PROCESS */
+.process-section{background:var(--navy)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:3rem;position:relative;max-width:1100px}
+.process-steps::after{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--orange),var(--amber));z-index:0}
+.step{text-align:center;padding:0 1.5rem;position:relative;z-index:1}
+.step-num{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--amber));display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff;margin:0 auto 1.5rem;box-shadow:0 0 20px rgba(249,115,22,0.3)}
+.step h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.step p{font-size:13px;color:var(--gray);line-height:1.5}
 
-.hero-cta {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  animation: fadeUp 0.8s ease both; animation-delay: 0.55s;
-}
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: linear-gradient(135deg, var(--orange), #e55c00);
-  color: #fff; padding: 16px 32px;
-  border-radius: 10px; font-weight: 700; font-size: 15px;
-  letter-spacing: 0.5px; border: none; cursor: pointer;
-  transition: var(--transition);
-  box-shadow: 0 8px 32px rgba(249,115,22,0.35);
-}
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(249,115,22,0.5);
-}
-.btn-outline {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: transparent; color: var(--white);
-  padding: 16px 32px; border-radius: 10px;
-  font-weight: 700; font-size: 15px; letter-spacing: 0.5px;
-  border: 1px solid rgba(255,255,255,0.2); cursor: pointer;
-  transition: var(--transition);
-}
-.btn-outline:hover {
-  background: rgba(255,255,255,0.08); transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.4);
-}
+/* TESTIMONIALS */
+.testimonials-section{background:var(--navy2)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;max-width:1100px}
+.testimonial-card{background:var(--card-bg);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:2rem;position:relative;transition:var(--transition)}
+.testimonial-card:hover{border-color:rgba(249,115,22,0.25);transform:translateY(-4px)}
+.testimonial-card::before{content:'"';position:absolute;top:1rem;right:1.5rem;font-size:60px;font-family:'Barlow Condensed',sans-serif;color:var(--orange);opacity:0.15;line-height:1}
+.testimonial-stars{color:var(--amber);font-size:16px;margin-bottom:1rem;letter-spacing:2px}
+.testimonial-text{font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:1.5rem;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--amber));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.testimonial-name{font-weight:700;font-size:14px}
+.testimonial-role{font-size:12px;color:var(--gray);margin-top:2px}
 
-/* Scroll indicator */
-.scroll-indicator {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
-  animation: fadeUp 1s ease both 1s;
-}
-.scroll-indicator span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
-.scroll-line {
-  width: 1px; height: 50px; background: linear-gradient(to bottom, var(--orange), transparent);
-  animation: scrollDown 2s ease infinite;
-}
-@keyframes scrollDown { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 50.01% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+/* CONTACT */
+.contact-section{background:var(--navy)}
+.contact-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;max-width:1100px}
+.contact-info{display:flex;flex-direction:column;gap:2rem}
+.contact-item{display:flex;align-items:flex-start;gap:1rem}
+.contact-item-icon{width:48px;height:48px;border-radius:12px;background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.contact-item-text h4{font-weight:700;margin-bottom:4px}
+.contact-item-text a,.contact-item-text p{font-size:15px;color:var(--gray);transition:var(--transition)}
+.contact-item-text a:hover{color:var(--orange)}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:8px}
+.form-group label{font-size:13px;font-weight:700;letter-spacing:0.5px;color:var(--gray)}
+.form-group input,.form-group textarea,.form-group select{background:var(--card-bg);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 18px;color:var(--white);font-family:'Nunito Sans',sans-serif;font-size:15px;outline:none;transition:var(--transition);width:100%}
+.form-group select option{background:var(--card-bg)}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,0.15)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-submit{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--orange),#e55c00);color:#fff;padding:18px;border-radius:10px;font-weight:700;font-size:16px;border:none;cursor:pointer;transition:var(--transition);box-shadow:0 8px 32px rgba(249,115,22,0.3)}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(249,115,22,0.5)}
+.urgent-box{padding:1.5rem;background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2);border-radius:14px}
+.urgent-box p{font-size:14px;color:var(--gray);line-height:1.7}
 
-/* Hero floating card */
-.hero-card {
-  position: absolute; right: 5vw; top: 50%; transform: translateY(-50%);
-  z-index: 2; background: var(--card-bg);
-  border: 1px solid rgba(249,115,22,0.2);
-  border-radius: 20px; padding: 2rem;
-  width: min(380px, 90vw);
-  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(249,115,22,0.1);
-  animation: fadeLeft 0.8s ease both 0.5s;
-  display: flex; flex-direction: column; gap: 1.25rem;
-}
-@keyframes fadeLeft { from { opacity:0; transform: translateY(-50%) translateX(40px); } to { opacity:1; transform: translateY(-50%) translateX(0); } }
+/* FOOTER */
+footer{background:#060e1a;padding:3rem 5vw 2rem;border-top:1px solid rgba(249,115,22,0.15)}
+.footer-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.06);flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;letter-spacing:1px}
+.footer-logo span{color:var(--orange)}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:var(--gray);transition:var(--transition)}
+.footer-links a:hover{color:var(--orange)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:13px;color:var(--gray)}
+.footer-bottom span{color:var(--orange)}
 
-.profile-row {
-  display: flex; align-items: center; gap: 16px;
-}
-.profile-avatar {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--orange), var(--amber));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 22px; font-weight: 900; color: #fff;
-  flex-shrink: 0;
-  box-shadow: 0 0 20px rgba(249,115,22,0.4);
-}
-.profile-info h3 { font-size: 18px; font-weight: 700; }
-.profile-info p { font-size: 13px; color: var(--orange); font-weight: 600; margin-top: 2px; }
-.profile-info small { font-size: 12px; color: var(--gray); }
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
-.card-divider { height: 1px; background: rgba(255,255,255,0.07); }
-
-.stat-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+/* MOBILE */
+@media(max-width:900px){
+  .hero-card{display:none}
+  .hero-content{max-width:100%}
+  .about-grid,.contact-layout{grid-template-columns:1fr;gap:3rem}
+  .about-experience-badge{right:1rem}
+  .training-layout{grid-template-columns:1fr;gap:3rem}
+  .process-steps{grid-template-columns:1fr 1fr;gap:2rem}
+  .process-steps::after{display:none}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+  .why-grid,.testimonials-grid{grid-template-columns:1fr}
 }
-.stat-item {
-  background: rgba(255,255,255,0.04); border-radius: 10px;
-  padding: 14px; text-align: center;
+@media(max-width:600px){
+  .process-steps{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-cta{flex-direction:column}
+  .btn-primary,.btn-outline{justify-content:center}
 }
-.stat-item .num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 28px; font-weight: 800; color: var(--orange);
-  line-height: 1;
-}
-.stat-item .label { font-size: 11px; color: var(--gray); margin-top: 4px; letter-spacing: 0.5px; }
-
-.cert-badges {
-  display: flex; flex-wrap: wrap; gap: 8px;
-}
-.cert-badge {
-  background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.25);
-  border-radius: 6px; padding: 5px 10px;
-  font-size: 11px; font-weight: 600; color: var(--orange); letter-spacing: 0.5px;
-}
-
-/* ===== SECTIONS ===== */
-section { padding: 6rem 5vw; }
-.section-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
-  text-transform: uppercase; color: var(--orange);
-  margin-bottom: 1rem;
-}
-.section-tag::before {
-  content: ''; display: block; width: 24px; height: 2px;
-  background: var(--orange);
-}
-.section-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: 800; text-transform: uppercase;
-  line-height: 1; margin-bottom: 1.5rem;
-}
-.section-title em { color: var(--orange); font-style: normal; }
-.section-desc {
-  font-size: 1.05rem; color: var(--gray); max-width: 620px; line-height: 1.75;
-}
-
-/* ===== STATS BAR ===== */
-.stats-bar {
-  background: linear-gradient(90deg, var(--orange) 0%, #e55c00 50%, var(--amber) 100%);
-  padding: 2.5rem 5vw;
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1rem; text-align: center;
-}
-.stats-bar .s-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 3rem; font-weight: 900; line-height: 1; color: #fff;
-}
-.stats-bar .s-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); margin-top: 4px; }
-
-/* ===== ABOUT ===== */
-.about-section { background: var(--navy2); }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
-.about-img-wrap {
-  position: relative;
-}
-.about-img-box {
-  width: 100%; aspect-ratio: 3/4; max-height: 500px;
-  border-radius: 20px; overflow: hidden;
-  background: linear-gradient(135deg, var(--navy3), var(--card-bg));
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid rgba(249,115,22,0.2);
-  position: relative;
-}
-.about-img-placeholder {
-  text-align: center; color: var(--gray);
-  font-size: 14px; padding: 2rem;
-}
-.about-img-placeholder .initials {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 80px; font-weight: 900;
-  color: var(--orange); opacity: 0.4;
-  line-height: 1; display: block; margin-bottom: 1rem;
-}
-.about-img-corner {
-  position: absolute; bottom: -20px; right: -20px;
-  width: 100px; height: 100px;
-  background: linear-gradient(135deg, var(--orange), var(--amber));
-  border-radius: 20px; z-index: -1;
-  opacity: 0.3;
-}
-.about-orange-dot {
-  position: absolute; top: -16px; left: -16px;
-  width: 60px; height: 60px; border-radius: 50%;
-  background: var(--orange); opacity: 0.15;
-  filter: blur(20px);
-}
-.about-experience-badge {
-  position: absolute; bottom: 2rem; right: -2rem;
-  background: linear-gradient(135deg, var(--orange), var(--amber));
-  border-radius: 14px; padding: 16px 20px; text-align: center;
-  box-shadow: 0 16px 40px rgba(249,115,22,0.3);
-}
-.about-experience-badge .years {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 40px; font-weight: 900; color: #fff; line-height: 1;
-}
-.about-experience-badge .ytext { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9); }
-
-.about-text { display: flex; flex-direction: column; gap: 1.5rem; }
-.skill-bar-group { display: flex; flex-direction: column; gap: 12px; }
-.skill-bar-item {}
-.skill-bar-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; font-weight: 600; }
-.skill-bar-label span:last-child { color: var(--orange); }
-.skill-bar-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
-.skill-bar-fill {
-  height: 100%; background: linear-gradient(90deg, var(--orange), var(--amber));
-  border-radius: 3px; width: 0;
-  transition: width 1.5s cubic-bezier(.4,0,.2,1);
-}
-
-/* ===== SERVICES ===== */
-.services-section { background: var(--navy); }
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem; margin-top: 3rem;
-  max-width: 1200px;
-}
-.service-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-  padding: 2rem;
-  transition: var(--transition);
-  position: relative; overflow: hidden;
-  cursor: default;
-}
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--orange), var(--amber));
-  transform: scaleX(0); transform-origin: left;
-  transition: var(--transition);
-}
-.service-card:hover { transform: translateY(-6px); border-color: rgba(249,115,22,0.3); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
-.service-card:hover::before { transform: scaleX(1); }
-.service-icon {
-  width: 52px; height: 52px; border-radius: 12px;
-  background: rgba(249,115,22,0.12);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 1.25rem;
-  border: 1px solid rgba(249,115,22,0.2);
-  transition: var(--transition);
-}
-.service-card:hover .service-icon { background: rgba(249,115,22,0.2); }
-.service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
-.service-card p { font-size: 14px; color: var(--gray); line-height: 1.65; }
-.service-card-number {
-  position: absolute; top: 1.5rem; right: 1.5rem;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 40px; font-weight: 900;
-  color: rgba(255,255,255,0.04); line-height: 1;
-}
-
-/* ===== TRAINING ===== */
-.training-section { background: var(--navy2); }
-.training-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; max-width: 1200px; }
-.training-courses { display: flex; flex-direction: column; gap: 12px; margin-top: 3rem; }
-.course-card {
-  display: flex; align-items: center; gap: 16px;
-  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px; padding: 1.25rem 1.5rem;
-  transition: var(--transition); cursor: default;
-}
-.course-card:hover { border-color: rgba(249,115,22,0.3); transform: translateX(6px); }
-.course-icon { font-size: 28px; flex-shrink: 0; }
-.course-info h4 { font-size: 15px; font-weight: 700; }
-.course-info p { font-size: 13px; color: var(--gray); margin-top: 2px; }
-.course-badge {
-  margin-left: auto; background: rgba(249,115,22,0.1);
-  border: 1px solid rgba(249,115,22,0.25); border-radius: 6px;
-  padding: 4px 10px; font-size: 11px; font-weight: 700;
-  color: var(--orange); white-space: nowrap; flex-shrink: 0;
-}
-.training-why { margin-top: 3rem; }
-.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 2rem; }
-.why-card {
-  background: linear-gradient(135deg, var(--card-bg), rgba(249,115,22,0.05));
-  border: 1px solid rgba(249,115,22,0.15);
-  border-radius: 14px; padding: 1.75rem;
-  text-align: center;
-}
-.why-card .why-icon { font-size: 36px; margin-bottom: 0.75rem; }
-.why-card h4 { font-weight: 700; margin-bottom: 6px; }
-.why-card p { font-size: 13px; color: var(--gray); }
-
-/* ===== PROCESS ===== */
-.process-section { background: var(--navy); }
-.process-steps {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0; margin-top: 3rem; position: relative; max-width: 1100px;
-}
-.process-steps::after {
-  content: ''; position: absolute; top: 32px; left: 12.5%; right: 12.5%;
-  height: 2px; background: linear-gradient(90deg, var(--orange), var(--amber));
-  z-index: 0;
-}
-.step {
-  text-align: center; padding: 0 1.5rem;
-  position: relative; z-index: 1;
-}
-.step-num {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--orange), var(--amber));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 24px; font-weight: 900; color: #fff;
-  margin: 0 auto 1.5rem;
-  box-shadow: 0 0 20px rgba(249,115,22,0.3);
-}
-.step h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-.step p { font-size: 13px; color: var(--gray); line-height: 1.5; }
-
-/* ===== CONTACT ===== */
-.contact-section { background: var(--navy2); }
-.contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; max-width: 1100px; }
-.contact-info { display: flex; flex-direction: column; gap: 2rem; }
-.contact-item {
-  display: flex; align-items: flex-start; gap: 1rem;
-}
-.contact-item-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; flex-shrink: 0;
-}
-.contact-item-text h4 { font-weight: 700; margin-bottom: 4px; }
-.contact-item-text a, .contact-item-text p { font-size: 15px; color: var(--gray); transition: var(--transition); }
-.contact-item-text a:hover { color: var(--orange); }
-
-.contact-form { display: flex; flex-direction: column; gap: 16px; }
-.form-group { display: flex; flex-direction: column; gap: 8px; }
-.form-group label { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: var(--gray); }
-.form-group input, .form-group textarea, .form-group select {
-  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px; padding: 14px 18px;
-  color: var(--white); font-family: 'Nunito Sans', sans-serif;
-  font-size: 15px; outline: none; transition: var(--transition);
-  width: 100%;
-}
-.form-group select option { background: var(--card-bg); }
-.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-  border-color: var(--orange); box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
-}
-.form-group textarea { resize: vertical; min-height: 120px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.form-submit {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  background: linear-gradient(135deg, var(--orange), #e55c00);
-  color: #fff; padding: 18px;
-  border-radius: 10px; font-weight: 700; font-size: 16px;
-  border: none; cursor: pointer; transition: var(--transition);
-  box-shadow: 0 8px 32px rgba(249,115,22,0.3);
-}
-.form-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(249,115,22,0.5); }
-
-/* ===== FOOTER ===== */
-footer {
-  background: #060e1a; padding: 3rem 5vw 2rem;
-  border-top: 1px solid rgba(249,115,22,0.15);
-}
-.footer-top {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06);
-  flex-wrap: wrap; gap: 1rem;
-}
-.footer-logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 24px; font-weight: 900; letter-spacing: 1px;
-}
-.footer-logo span { color: var(--orange); }
-.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
-.footer-links a { font-size: 13px; color: var(--gray); transition: var(--transition); }
-.footer-links a:hover { color: var(--orange); }
-.footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem;
-}
-.footer-bottom p { font-size: 13px; color: var(--gray); }
-.footer-bottom span { color: var(--orange); }
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.reveal {
-  opacity: 1; transform: translateY(0);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ===== MOBILE ===== */
-@media (max-width: 900px) {
-  .hero-card { display: none; }
-  .hero-content { max-width: 100%; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .about-experience-badge { right: 1rem; }
-  .training-layout { grid-template-columns: 1fr; gap: 3rem; }
-  .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .process-steps::after { display: none; }
-  .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
-  .stats-bar { grid-template-columns: repeat(2, 1fr); }
-  .nav-links { display: none; }
-  .menu-btn { display: flex; }
-  .why-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .process-steps { grid-template-columns: 1fr; }
-  .stats-bar { grid-template-columns: repeat(2, 1fr); }
-  .form-row { grid-template-columns: 1fr; }
-  .hero-cta { flex-direction: column; }
-  .btn-primary, .btn-outline { justify-content: center; }
-}
-
-/* ===== LANG HIDDEN ===== */
-[data-ro] { display: none; }
-body.lang-ro [data-en] { display: none; }
-body.lang-ro [data-ro] { display: block; }
-body.lang-ro span[data-en] { display: none; }
-body.lang-ro span[data-ro] { display: inline; }
-body.lang-ro div[data-ro] { display: flex; }
-
-/* mobile menu */
-.mobile-menu {
-  display: none; flex-direction: column; gap: 1rem;
-  position: fixed; top: 72px; left: 0; right: 0; z-index: 999;
-  background: rgba(11,23,39,0.97); backdrop-filter: blur(14px);
-  padding: 2rem 5vw;
-  border-bottom: 1px solid rgba(249,115,22,0.15);
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a { font-size: 18px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
-.mobile-menu a:hover { color: var(--orange); }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="navbar">
   <div class="nav-logo">
     <div class="nav-logo-badge">MTS</div>
     <div class="nav-logo-text">Mario<span>Training</span><br>Solution</div>
   </div>
   <ul class="nav-links">
-    <li><a href="#about" data-en>About</a><a href="#about" data-ro>Despre</a></li>
-    <li><a href="#services" data-en>Services</a><a href="#services" data-ro>Servicii</a></li>
-    <li><a href="#training" data-en>Training</a><a href="#training" data-ro>Cursuri</a></li>
-    <li><a href="#contact" data-en>Contact</a><a href="#contact" data-ro>Contact</a></li>
+    <li><a href="#about" class="en-i">About</a><a href="#about" class="ro-i">Despre</a></li>
+    <li><a href="#services" class="en-i">Services</a><a href="#services" class="ro-i">Servicii</a></li>
+    <li><a href="#training" class="en-i">Training</a><a href="#training" class="ro-i">Cursuri</a></li>
+    <li><a href="#contact" class="en-i">Contact</a><a href="#contact" class="ro-i">Contact</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('ro')">RO</button>
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-ro" onclick="setLang('ro')">RO</button>
     </div>
-    <div class="menu-btn" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
-<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="toggleMenu()" data-en>About</a>
-  <a href="#about" onclick="toggleMenu()" data-ro>Despre</a>
-  <a href="#services" onclick="toggleMenu()" data-en>Services</a>
-  <a href="#services" onclick="toggleMenu()" data-ro>Servicii</a>
-  <a href="#training" onclick="toggleMenu()" data-en>Training</a>
-  <a href="#training" onclick="toggleMenu()" data-ro>Cursuri</a>
-  <a href="#contact" onclick="toggleMenu()" data-en>Contact</a>
-  <a href="#contact" onclick="toggleMenu()" data-ro>Contact</a>
+  <a href="#about" onclick="toggleMenu()" class="en-i">About</a>
+  <a href="#about" onclick="toggleMenu()" class="ro-i">Despre</a>
+  <a href="#services" onclick="toggleMenu()" class="en-i">Services</a>
+  <a href="#services" onclick="toggleMenu()" class="ro-i">Servicii</a>
+  <a href="#training" onclick="toggleMenu()" class="en-i">Training</a>
+  <a href="#training" onclick="toggleMenu()" class="ro-i">Cursuri</a>
+  <a href="#contact" onclick="toggleMenu()" class="en-i">Contact</a>
+  <a href="#contact" onclick="toggleMenu()" class="ro-i">Contact</a>
 </div>
 
-<!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-diagonal"></div>
-  <div class="hero-shape hero-shape-1"></div>
-  <div class="hero-shape hero-shape-2"></div>
-
+  <div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-diagonal"></div>
+  <div class="hero-shape hero-shape-1"></div><div class="hero-shape hero-shape-2"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-dot"></div>
-      <span data-en>Dublin, Ireland · Est. 2019</span>
-      <span data-ro>Dublin, Irlanda · Înf. 2019</span>
+      <span class="en-i">Dublin, Ireland · Est. 2019</span>
+      <span class="ro-i">Dublin, Irlanda · Înf. 2019</span>
     </div>
-
     <h1 class="hero-headline">
-      <span data-en>Safety<br><span class="line2">Training &</span><br>Compliance</span>
-      <span data-ro>Securitate<br><span class="line2">Instruire &</span><br>Conformitate</span>
+      <span class="en">Safety<br><span class="line2">Training &</span><br>Compliance</span>
+      <span class="ro">Securitate<br><span class="line2">Instruire &</span><br>Conformitate</span>
     </h1>
-
-    <p class="hero-sub">
-      <span data-en>Professional HSE advisory, documentation, and certified training for the construction industry. Fast. Reliable. Expert.</span>
-      <span data-ro>Consultanță HSE profesională, documentație și instruire certificată pentru industria construcțiilor. Rapid. De încredere. Expert.</span>
-    </p>
-
+    <p class="hero-sub en">Professional HSE advisory, documentation, and certified training for the construction industry. Fast. Reliable. Expert.</p>
+    <p class="hero-sub ro">Consultanță HSE profesională, documentație și instruire certificată pentru industria construcțiilor. Rapid. De încredere. Expert.</p>
     <div class="hero-badges">
       <div class="badge"><div class="dot"></div><span>QQI Level 6</span></div>
-      <div class="badge"><div class="dot"></div><span data-en>MEWP Certified</span><span data-ro>Certificat MEWP</span></div>
-      <div class="badge"><div class="dot"></div><span data-en>Bilingual EN/RO</span><span data-ro>Bilingv EN/RO</span></div>
+      <div class="badge"><div class="dot"></div><span class="en-i">MEWP Certified</span><span class="ro-i">Certificat MEWP</span></div>
+      <div class="badge"><div class="dot"></div><span class="en-i">Bilingual EN/RO</span><span class="ro-i">Bilingv EN/RO</span></div>
     </div>
-
     <div class="hero-cta">
-      <a href="#contact" class="btn-primary">
-        ✉
-        <span data-en>Get In Touch</span>
-        <span data-ro>Contactează-mă</span>
-      </a>
-      <a href="#services" class="btn-outline">
-        <span data-en>Our Services</span>
-        <span data-ro>Serviciile Noastre</span>
-      </a>
+      <a href="#contact" class="btn-primary">✉ <span class="en-i">Get In Touch</span><span class="ro-i">Contactează-mă</span></a>
+      <a href="#services" class="btn-outline"><span class="en-i">Our Services</span><span class="ro-i">Serviciile Noastre</span></a>
     </div>
   </div>
-
-  <!-- Floating Profile Card -->
   <div class="hero-card">
     <div class="profile-row">
       <div class="profile-avatar">MC</div>
       <div class="profile-info">
         <h3>Mario Chitac</h3>
-        <p data-en>HSE Advisor & Trainer</p>
-        <p data-ro>Consilier HSE & Instructor</p>
+        <p class="en">HSE Advisor & Trainer</p>
+        <p class="ro">Consilier HSE & Instructor</p>
         <small>📍 Dublin, Ireland</small>
       </div>
     </div>
     <div class="card-divider"></div>
     <div class="stat-grid">
-      <div class="stat-item">
-        <div class="num">11+</div>
-        <div class="label" data-en>Years Exp.</div>
-        <div class="label" data-ro>Ani Exp.</div>
-      </div>
-      <div class="stat-item">
-        <div class="num">500+</div>
-        <div class="label" data-en>Connections</div>
-        <div class="label" data-ro>Conexiuni</div>
-      </div>
-      <div class="stat-item">
-        <div class="num">6+</div>
-        <div class="label" data-en>Certifications</div>
-        <div class="label" data-ro>Certificări</div>
-      </div>
-      <div class="stat-item">
-        <div class="num">2</div>
-        <div class="label" data-en>Languages</div>
-        <div class="label" data-ro>Limbi</div>
-      </div>
+      <div class="stat-item"><div class="num">11+</div><div class="lbl en">Years Exp.</div><div class="lbl ro">Ani Exp.</div></div>
+      <div class="stat-item"><div class="num">500+</div><div class="lbl en">Connections</div><div class="lbl ro">Conexiuni</div></div>
+      <div class="stat-item"><div class="num">6+</div><div class="lbl en">Certifications</div><div class="lbl ro">Certificări</div></div>
+      <div class="stat-item"><div class="num">2</div><div class="lbl en">Languages</div><div class="lbl ro">Limbi</div></div>
     </div>
     <div class="card-divider"></div>
     <div class="cert-badges">
-      <span class="cert-badge">QQI L6</span>
-      <span class="cert-badge">MEWP</span>
-      <span class="cert-badge">WAH</span>
-      <span class="cert-badge">Abrasive</span>
-      <span class="cert-badge">Harness</span>
+      <span class="cert-badge">QQI L6</span><span class="cert-badge">MEWP</span><span class="cert-badge">WAH</span><span class="cert-badge">Abrasive</span><span class="cert-badge">Harness</span>
     </div>
   </div>
-
   <div class="scroll-indicator">
-    <span data-en>Scroll</span>
-    <span data-ro>Derulați</span>
+    <span class="en-i">Scroll</span><span class="ro-i">Derulați</span>
     <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- STATS BAR -->
 <div class="stats-bar">
-  <div>
-    <div class="s-num">11+</div>
-    <div class="s-label" data-en>Years Experience</div>
-    <div class="s-label" data-ro>Ani Experiență</div>
-  </div>
-  <div>
-    <div class="s-num">100%</div>
-    <div class="s-label" data-en>Compliance Rate</div>
-    <div class="s-label" data-ro>Rată Conformitate</div>
-  </div>
-  <div>
-    <div class="s-num">6+</div>
-    <div class="s-label" data-en>Training Programs</div>
-    <div class="s-label" data-ro>Programe Instruire</div>
-  </div>
-  <div>
-    <div class="s-num">2</div>
-    <div class="s-label" data-en>Languages</div>
-    <div class="s-label" data-ro>Limbi</div>
-  </div>
+  <div><div class="s-num">11+</div><div class="s-label en">Years Experience</div><div class="s-label ro">Ani Experiență</div></div>
+  <div><div class="s-num">100%</div><div class="s-label en">Compliance Rate</div><div class="s-label ro">Rată Conformitate</div></div>
+  <div><div class="s-num">6+</div><div class="s-label en">Training Programs</div><div class="s-label ro">Programe Instruire</div></div>
+  <div><div class="s-num">2</div><div class="s-label en">Languages</div><div class="s-label ro">Limbi</div></div>
 </div>
 
-<!-- ABOUT -->
-<section class="about-section reveal" id="about">
+<section class="about-section" id="about">
   <div class="about-grid">
     <div class="about-img-wrap">
       <div class="about-orange-dot"></div>
       <div class="about-img-box">
         <div class="about-img-placeholder">
           <span class="initials">MC</span>
-          <p data-en>Mario Chitac<br>HSE Advisor & Instructor</p>
-          <p data-ro>Mario Chitac<br>Consilier HSE & Instructor</p>
+          <p class="en">Mario Chitac<br>HSE Advisor & Instructor</p>
+          <p class="ro">Mario Chitac<br>Consilier HSE & Instructor</p>
         </div>
       </div>
       <div class="about-img-corner"></div>
       <div class="about-experience-badge">
         <div class="years">11+</div>
-        <div class="ytext" data-en>Years in<br>Industry</div>
-        <div class="ytext" data-ro>Ani în<br>Industrie</div>
+        <div class="ytext en">Years in<br>Industry</div>
+        <div class="ytext ro">Ani în<br>Industrie</div>
       </div>
     </div>
-
     <div class="about-text">
       <div>
-        <div class="section-tag" data-en>About Mario</div>
-        <div class="section-tag" data-ro>Despre Mario</div>
-        <h2 class="section-title" data-en>Your <em>Expert</em><br>HSE Professional</h2>
-        <h2 class="section-title" data-ro>Profesionistul Tău<br><em>Expert</em> HSE</h2>
-        <p class="section-desc" data-en>
-          A highly adaptable Health, Safety & Environment Advisor with over 11 years in the construction industry. Mario brings bilingual expertise (English & Romanian), working with some of Dublin's biggest builders delivering proactive safety culture through innovative methods.
-        </p>
-        <p class="section-desc" data-ro>
-          Un Consilier de Sănătate, Securitate și Mediu extrem de adaptabil, cu peste 11 ani în industria construcțiilor. Mario aduce expertiză bilingvă (engleză și română), colaborând cu unii dintre cei mai mari constructori din Dublin.
-        </p>
+        <div class="section-tag en">About Mario</div>
+        <div class="section-tag ro">Despre Mario</div>
+        <h2 class="section-title en">Your <em>Expert</em><br>HSE Professional</h2>
+        <h2 class="section-title ro">Profesionistul Tău<br><em>Expert</em> HSE</h2>
+        <p class="section-desc en">A highly adaptable Health, Safety & Environment Advisor with over 11 years in the construction industry. Mario brings bilingual expertise (English & Romanian), working with some of Dublin's biggest builders delivering proactive safety culture through innovative methods.</p>
+        <p class="section-desc ro">Un Consilier de Sănătate, Securitate și Mediu extrem de adaptabil, cu peste 11 ani în industria construcțiilor. Mario aduce expertiză bilingvă (engleză și română), colaborând cu unii dintre cei mai mari constructori din Dublin.</p>
       </div>
-
-      <div class="skill-bar-group">
-        <div class="skill-bar-item">
-          <div class="skill-bar-label">
-            <span data-en>HSE Advisory</span><span data-ro>Consultanță HSE</span>
-            <span>95%</span>
-          </div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-label">
-            <span data-en>Safety Documentation</span><span data-ro>Documentație Securitate</span>
-            <span>98%</span>
-          </div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="98"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-label">
-            <span data-en>Training Delivery</span><span data-ro>Livrare Cursuri</span>
-            <span>97%</span>
-          </div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="97"></div></div>
-        </div>
-        <div class="skill-bar-item">
-          <div class="skill-bar-label">
-            <span data-en>Risk Assessment</span><span data-ro>Evaluare de Risc</span>
-            <span>96%</span>
-          </div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="96"></div></div>
-        </div>
+      <div class="skill-bar-group" id="skill-bars">
+        <div><div class="skill-bar-label"><span class="en-i">HSE Advisory</span><span class="ro-i">Consultanță HSE</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+        <div><div class="skill-bar-label"><span class="en-i">Safety Documentation</span><span class="ro-i">Documentație Securitate</span><span>98%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="98"></div></div></div>
+        <div><div class="skill-bar-label"><span class="en-i">Training Delivery</span><span class="ro-i">Livrare Cursuri</span><span>97%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="97"></div></div></div>
+        <div><div class="skill-bar-label"><span class="en-i">Risk Assessment</span><span class="ro-i">Evaluare de Risc</span><span>96%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="96"></div></div></div>
       </div>
-
-      <a href="#contact" class="btn-primary" style="width:fit-content">
-        ✉ <span data-en>Contact Mario</span><span data-ro>Contactează-l pe Mario</span>
-      </a>
+      <a href="#contact" class="btn-primary" style="width:fit-content">✉ <span class="en-i">Contact Mario</span><span class="ro-i">Contactează-l pe Mario</span></a>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services-section reveal" id="services">
-  <div class="section-tag" data-en>What We Do</div>
-  <div class="section-tag" data-ro>Ce Facem</div>
-  <h2 class="section-title" data-en>Our <em>Services</em></h2>
-  <h2 class="section-title" data-ro>Serviciile <em>Noastre</em></h2>
-  <p class="section-desc" data-en>Full-spectrum construction compliance documentation and HSE advisory — delivered fast, accurately, and professionally.</p>
-  <p class="section-desc" data-ro>Documentație completă de conformitate în construcții și consultanță HSE — livrate rapid, precis și profesional.</p>
-
+<section class="services-section" id="services">
+  <div class="section-tag en">What We Do</div><div class="section-tag ro">Ce Facem</div>
+  <h2 class="section-title en">Our <em>Services</em></h2><h2 class="section-title ro">Serviciile <em>Noastre</em></h2>
+  <p class="section-desc en">Full-spectrum construction compliance documentation and HSE advisory — delivered fast, accurately, and professionally.</p>
+  <p class="section-desc ro">Documentație completă de conformitate în construcții și consultanță HSE — livrate rapid, precis și profesional.</p>
   <div class="services-grid">
-
-    <div class="service-card reveal">
-      <div class="service-card-number">01</div>
-      <div class="service-icon">🛡️</div>
-      <h3 data-en>Company Safety Statements</h3>
-      <h3 data-ro>Politici de Securitate ale Companiei</h3>
-      <p data-en>Comprehensive, legally-compliant safety statements tailored to your company's operations and Irish health & safety legislation.</p>
-      <p data-ro>Politici de securitate complete și conforme cu legislația irlandeză, adaptate la operațiunile companiei tale.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-card-number">02</div>
-      <div class="service-icon">🌿</div>
-      <h3 data-en>Environmental Statements</h3>
-      <h3 data-ro>Declarații de Mediu</h3>
-      <p data-en>Detailed environmental impact assessments and compliance documentation meeting current environmental standards on site.</p>
-      <p data-ro>Evaluări detaliate ale impactului de mediu și documentație de conformitate conform standardelor actuale.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-card-number">03</div>
-      <div class="service-icon">⚠️</div>
-      <h3 data-en>Operational Risk Assessments</h3>
-      <h3 data-ro>Evaluări de Risc Operațional</h3>
-      <p data-en>Thorough risk identification and mitigation strategies for all construction activities, ensuring your team works safely every day.</p>
-      <p data-ro>Identificarea detaliată a riscurilor și strategii de atenuare pentru toate activitățile de construcție.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-card-number">04</div>
-      <div class="service-icon">📋</div>
-      <h3 data-en>Method Statements</h3>
-      <h3 data-ro>Metode de Lucru (RAMS)</h3>
-      <p data-en>Step-by-step method statements (RAMS) outlining safe working procedures for any task — site-specific and audit-ready.</p>
-      <p data-ro>Declarații de metodă pas-cu-pas (RAMS) care descriu procedurile de lucru sigure pentru orice activitate de pe șantier.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-card-number">05</div>
-      <div class="service-icon">📊</div>
-      <h3 data-en>Risk Assessments</h3>
-      <h3 data-ro>Evaluări de Risc</h3>
-      <p data-en>Systematic risk assessments for activities, equipment, and personnel exposure — clearly documented and actionable.</p>
-      <p data-ro>Evaluări sistematice de risc pentru activități, echipamente și expunerea personalului — documentate clar și acționabile.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-card-number">06</div>
-      <div class="service-icon">📁</div>
-      <h3 data-en>Full Compliance Documentation</h3>
-      <h3 data-ro>Documentație Completă de Conformitate</h3>
-      <p data-en>Any other construction compliance documentation you need — inspections, safety plans, audits, inductions, and more.</p>
-      <p data-ro>Orice altă documentație de conformitate necesară în construcții — inspecții, planuri de securitate, audituri și altele.</p>
-    </div>
-
+    <div class="service-card"><div class="service-card-number">01</div><div class="service-icon">🛡️</div><h3 class="en">Company Safety Statements</h3><h3 class="ro">Politici de Securitate</h3><p class="en">Comprehensive, legally-compliant safety statements tailored to your company's operations and Irish health & safety legislation.</p><p class="ro">Politici de securitate complete și conforme cu legislația irlandeză, adaptate la operațiunile companiei tale.</p></div>
+    <div class="service-card"><div class="service-card-number">02</div><div class="service-icon">🌿</div><h3 class="en">Environmental Statements</h3><h3 class="ro">Declarații de Mediu</h3><p class="en">Detailed environmental impact assessments and compliance documentation meeting current environmental standards on site.</p><p class="ro">Evaluări detaliate ale impactului de mediu și documentație de conformitate conform standardelor actuale.</p></div>
+    <div class="service-card"><div class="service-card-number">03</div><div class="service-icon">⚠️</div><h3 class="en">Operational Risk Assessments</h3><h3 class="ro">Evaluări de Risc Operațional</h3><p class="en">Thorough risk identification and mitigation strategies for all construction activities, ensuring your team works safely every day.</p><p class="ro">Identificarea detaliată a riscurilor și strategii de atenuare pentru toate activitățile de construcție.</p></div>
+    <div class="service-card"><div class="service-card-number">04</div><div class="service-icon">📋</div><h3 class="en">Method Statements</h3><h3 class="ro">Metode de Lucru (RAMS)</h3><p class="en">Step-by-step method statements (RAMS) outlining safe working procedures for any task — site-specific and audit-ready.</p><p class="ro">Declarații de metodă pas-cu-pas (RAMS) care descriu procedurile de lucru sigure pentru orice activitate de pe șantier.</p></div>
+    <div class="service-card"><div class="service-card-number">05</div><div class="service-icon">📊</div><h3 class="en">Risk Assessments</h3><h3 class="ro">Evaluări de Risc</h3><p class="en">Systematic risk assessments for activities, equipment, and personnel exposure — clearly documented and actionable.</p><p class="ro">Evaluări sistematice de risc pentru activități, echipamente și expunerea personalului — documentate clar și acționabile.</p></div>
+    <div class="service-card"><div class="service-card-number">06</div><div class="service-icon">📁</div><h3 class="en">Full Compliance Documentation</h3><h3 class="ro">Documentație Completă</h3><p class="en">Any other construction compliance documentation you need — inspections, safety plans, audits, inductions, and more.</p><p class="ro">Orice altă documentație de conformitate necesară în construcții — inspecții, planuri de securitate, audituri și altele.</p></div>
   </div>
 </section>
 
-<!-- TRAINING -->
-<section class="training-section reveal" id="training">
+<section class="training-section" id="training">
   <div class="training-layout">
     <div>
-      <div class="section-tag" data-en>Certified Training</div>
-      <div class="section-tag" data-ro>Instruire Certificată</div>
-      <h2 class="section-title" data-en>Training <em>Courses</em></h2>
-      <h2 class="section-title" data-ro>Cursuri de <em>Instruire</em></h2>
-      <p class="section-desc" data-en>QQI Level 6 certified, bilingual (English & Romanian) training programs delivered on-site across Dublin and surrounding areas.</p>
-      <p class="section-desc" data-ro>Programe de instruire certificate QQI Nivel 6, bilingve (engleză și română), livrate direct pe șantier în Dublin și împrejurimi.</p>
-
+      <div class="section-tag en">Certified Training</div><div class="section-tag ro">Instruire Certificată</div>
+      <h2 class="section-title en">Training <em>Courses</em></h2><h2 class="section-title ro">Cursuri de <em>Instruire</em></h2>
+      <p class="section-desc en">QQI Level 6 certified, bilingual (English & Romanian) training programs delivered on-site across Dublin and surrounding areas.</p>
+      <p class="section-desc ro">Programe de instruire certificate QQI Nivel 6, bilingve, livrate direct pe șantier în Dublin și împrejurimi.</p>
       <div class="training-courses">
-        <div class="course-card">
-          <div class="course-icon">🤲</div>
-          <div class="course-info">
-            <h4 data-en>Manual Handling</h4>
-            <h4 data-ro>Manipulare Manuală</h4>
-            <p data-en>Safe lifting and carrying techniques</p>
-            <p data-ro>Tehnici sigure de ridicare și transport</p>
-          </div>
-          <span class="course-badge">QQI L6</span>
-        </div>
-
-        <div class="course-card">
-          <div class="course-icon">🏗️</div>
-          <div class="course-info">
-            <h4>MEWP</h4>
-            <p data-en>Mobile Elevated Work Platform operation</p>
-            <p data-ro>Operarea platformei mobile de lucru la înălțime</p>
-          </div>
-          <span class="course-badge" data-en>Certified</span>
-          <span class="course-badge" data-ro>Certificat</span>
-        </div>
-
-        <div class="course-card">
-          <div class="course-icon">🧗</div>
-          <div class="course-info">
-            <h4 data-en>Working at Height</h4>
-            <h4 data-ro>Lucru la Înălțime</h4>
-            <p data-en>Safety procedures for elevated work</p>
-            <p data-ro>Proceduri de securitate pentru lucrul la înălțime</p>
-          </div>
-          <span class="course-badge" data-en>Certified</span>
-          <span class="course-badge" data-ro>Certificat</span>
-        </div>
-
-        <div class="course-card">
-          <div class="course-icon">🔧</div>
-          <div class="course-info">
-            <h4 data-en>Abrasive Wheels</h4>
-            <h4 data-ro>Discuri Abrazive</h4>
-            <p data-en>Safe use and handling of abrasive equipment</p>
-            <p data-ro>Utilizare și manipulare sigură a echipamentelor abrazive</p>
-          </div>
-          <span class="course-badge" data-en>Certified</span>
-          <span class="course-badge" data-ro>Certificat</span>
-        </div>
-
-        <div class="course-card">
-          <div class="course-icon">🦺</div>
-          <div class="course-info">
-            <h4 data-en>Harness & Lanyard Inspection</h4>
-            <h4 data-ro>Inspecție Hamuri & Cordine</h4>
-            <p data-en>Equipment inspection and pre-use checks</p>
-            <p data-ro>Inspecția echipamentului și verificări pre-utilizare</p>
-          </div>
-          <span class="course-badge" data-en>Inspector</span>
-          <span class="course-badge" data-ro>Inspector</span>
-        </div>
-
-        <div class="course-card">
-          <div class="course-icon">🚜</div>
-          <div class="course-info">
-            <h4 data-en>Forklift Operation</h4>
-            <h4 data-ro>Operare Stivuitor</h4>
-            <p data-en>Safe forklift operation on construction sites</p>
-            <p data-ro>Operare sigură a stivuitorului pe șantier</p>
-          </div>
-          <span class="course-badge" data-en>Certified</span>
-          <span class="course-badge" data-ro>Certificat</span>
-        </div>
+        <div class="course-card"><div class="course-icon">🤲</div><div class="course-info"><h4 class="en">Manual Handling</h4><h4 class="ro">Manipulare Manuală</h4><p class="en">Safe lifting and carrying techniques</p><p class="ro">Tehnici sigure de ridicare și transport</p></div><span class="course-badge">QQI L6</span></div>
+        <div class="course-card"><div class="course-icon">🏗️</div><div class="course-info"><h4>MEWP</h4><p class="en">Mobile Elevated Work Platform operation</p><p class="ro">Operarea platformei mobile de lucru la înălțime</p></div><span class="course-badge en-i">Certified</span><span class="course-badge ro-i">Certificat</span></div>
+        <div class="course-card"><div class="course-icon">🧗</div><div class="course-info"><h4 class="en">Working at Height</h4><h4 class="ro">Lucru la Înălțime</h4><p class="en">Safety procedures for elevated work</p><p class="ro">Proceduri de securitate pentru lucrul la înălțime</p></div><span class="course-badge en-i">Certified</span><span class="course-badge ro-i">Certificat</span></div>
+        <div class="course-card"><div class="course-icon">🔧</div><div class="course-info"><h4 class="en">Abrasive Wheels</h4><h4 class="ro">Discuri Abrazive</h4><p class="en">Safe use and handling of abrasive equipment</p><p class="ro">Utilizare și manipulare sigură a echipamentelor abrazive</p></div><span class="course-badge en-i">Certified</span><span class="course-badge ro-i">Certificat</span></div>
+        <div class="course-card"><div class="course-icon">🦺</div><div class="course-info"><h4 class="en">Harness & Lanyard Inspection</h4><h4 class="ro">Inspecție Hamuri & Cordine</h4><p class="en">Equipment inspection and pre-use checks</p><p class="ro">Inspecția echipamentului și verificări pre-utilizare</p></div><span class="course-badge en-i">Inspector</span><span class="course-badge ro-i">Inspector</span></div>
+        <div class="course-card"><div class="course-icon">🚜</div><div class="course-info"><h4 class="en">Forklift Operation</h4><h4 class="ro">Operare Stivuitor</h4><p class="en">Safe forklift operation on construction sites</p><p class="ro">Operare sigură a stivuitorului pe șantier</p></div><span class="course-badge en-i">Certified</span><span class="course-badge ro-i">Certificat</span></div>
       </div>
     </div>
-
     <div class="training-why">
-      <div class="section-tag" data-en>Why Choose MTS</div>
-      <div class="section-tag" data-ro>De Ce MTS</div>
-      <h2 class="section-title" data-en>The <em>MTS</em><br>Advantage</h2>
-      <h2 class="section-title" data-ro>Avantajul<br><em>MTS</em></h2>
-
+      <div class="section-tag en">Why Choose MTS</div><div class="section-tag ro">De Ce MTS</div>
+      <h2 class="section-title en">The <em>MTS</em><br>Advantage</h2><h2 class="section-title ro">Avantajul<br><em>MTS</em></h2>
       <div class="why-grid">
-        <div class="why-card">
-          <div class="why-icon">⚡</div>
-          <h4 data-en>Fast Turnaround</h4>
-          <h4 data-ro>Livrare Rapidă</h4>
-          <p data-en>Documents and training delivered quickly without cutting corners on quality.</p>
-          <p data-ro>Documente și cursuri livrate rapid, fără compromisuri la calitate.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">✅</div>
-          <h4 data-en>Reliable & Accurate</h4>
-          <h4 data-ro>De Încredere & Precis</h4>
-          <p data-en>Every document is checked and compliant with Irish legislation and best practices.</p>
-          <p data-ro>Fiecare document este verificat și conform cu legislația irlandeză.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🌐</div>
-          <h4 data-en>Bilingual</h4>
-          <h4 data-ro>Bilingv</h4>
-          <p data-en>Full service in both English and Romanian — no language barriers on your site.</p>
-          <p data-ro>Servicii complete în engleză și română — fără bariere lingvistice pe șantierul tău.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🏆</div>
-          <h4 data-en>Experienced</h4>
-          <h4 data-ro>Experimentat</h4>
-          <p data-en>Over 11 years with some of Dublin's biggest construction companies.</p>
-          <p data-ro>Peste 11 ani cu unii dintre cei mai mari constructori din Dublin.</p>
-        </div>
+        <div class="why-card"><div class="why-icon">⚡</div><h4 class="en">Fast Turnaround</h4><h4 class="ro">Livrare Rapidă</h4><p class="en">Documents and training delivered quickly without cutting corners on quality.</p><p class="ro">Documente și cursuri livrate rapid, fără compromisuri la calitate.</p></div>
+        <div class="why-card"><div class="why-icon">✅</div><h4 class="en">Reliable & Accurate</h4><h4 class="ro">De Încredere & Precis</h4><p class="en">Every document is checked and compliant with Irish legislation and best practices.</p><p class="ro">Fiecare document este verificat și conform cu legislația irlandeză.</p></div>
+        <div class="why-card"><div class="why-icon">🌐</div><h4 class="en">Bilingual</h4><h4 class="ro">Bilingv</h4><p class="en">Full service in both English and Romanian — no language barriers on your site.</p><p class="ro">Servicii complete în engleză și română — fără bariere lingvistice pe șantierul tău.</p></div>
+        <div class="why-card"><div class="why-icon">🏆</div><h4 class="en">Experienced</h4><h4 class="ro">Experimentat</h4><p class="en">Over 11 years with some of Dublin's biggest construction companies.</p><p class="ro">Peste 11 ani cu unii dintre cei mai mari constructori din Dublin.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="process-section reveal" id="process">
-  <div class="section-tag" data-en>How It Works</div>
-  <div class="section-tag" data-ro>Cum Funcționează</div>
-  <h2 class="section-title" data-en>Simple <em>Process</em></h2>
-  <h2 class="section-title" data-ro><em>Procesul</em> Simplu</h2>
-
+<section class="process-section" id="process">
+  <div class="section-tag en">How It Works</div><div class="section-tag ro">Cum Funcționează</div>
+  <h2 class="section-title en">Simple <em>Process</em></h2><h2 class="section-title ro"><em>Procesul</em> Simplu</h2>
   <div class="process-steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h4 data-en>Contact Us</h4>
-      <h4 data-ro>Contactează-ne</h4>
-      <p data-en>Reach out by phone, email or WhatsApp with your requirements.</p>
-      <p data-ro>Contactează-ne prin telefon, email sau WhatsApp cu cerințele tale.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h4 data-en>Consultation</h4>
-      <h4 data-ro>Consultare</h4>
-      <p data-en>We discuss your project needs and identify the exact documentation required.</p>
-      <p data-ro>Discutăm nevoile proiectului tău și identificăm documentația necesară.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h4 data-en>Preparation</h4>
-      <h4 data-ro>Pregătire</h4>
-      <p data-en>We prepare all documents and training schedules, fully tailored to your site.</p>
-      <p data-ro>Pregătim toate documentele și programele de instruire, adaptate șantierului tău.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <h4 data-en>Delivery</h4>
-      <h4 data-ro>Livrare</h4>
-      <p data-en>Fast, accurate delivery — ready for inspections, audits, and compliance checks.</p>
-      <p data-ro>Livrare rapidă și precisă — gata pentru inspecții, audituri și verificări de conformitate.</p>
-    </div>
+    <div class="step"><div class="step-num">01</div><h4 class="en">Contact Us</h4><h4 class="ro">Contactează-ne</h4><p class="en">Reach out by phone, email or WhatsApp with your requirements.</p><p class="ro">Contactează-ne prin telefon, email sau WhatsApp cu cerințele tale.</p></div>
+    <div class="step"><div class="step-num">02</div><h4 class="en">Consultation</h4><h4 class="ro">Consultare</h4><p class="en">We discuss your project needs and identify the exact documentation required.</p><p class="ro">Discutăm nevoile proiectului tău și identificăm documentația necesară.</p></div>
+    <div class="step"><div class="step-num">03</div><h4 class="en">Preparation</h4><h4 class="ro">Pregătire</h4><p class="en">We prepare all documents and training schedules, fully tailored to your site.</p><p class="ro">Pregătim toate documentele și programele de instruire, adaptate șantierului tău.</p></div>
+    <div class="step"><div class="step-num">04</div><h4 class="en">Delivery</h4><h4 class="ro">Livrare</h4><p class="en">Fast, accurate delivery — ready for inspections, audits, and compliance checks.</p><p class="ro">Livrare rapidă și precisă — gata pentru inspecții, audituri și verificări de conformitate.</p></div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact-section reveal" id="contact">
-  <div class="section-tag" data-en>Get In Touch</div>
-  <div class="section-tag" data-ro>Ia Legătura</div>
-  <h2 class="section-title" data-en>Contact <em>Us Today</em></h2>
-  <h2 class="section-title" data-ro>Contactează-ne <em>Astăzi</em></h2>
-  <p class="section-desc" data-en>Ready to sort your safety documentation or book a training course? Reach out and we'll get back to you fast.</p>
-  <p class="section-desc" data-ro>Gata să îți organizezi documentația de securitate sau să rezervi un curs? Contactează-ne și vom răspunde rapid.</p>
+<section class="testimonials-section" id="testimonials">
+  <div class="section-tag en">What Clients Say</div><div class="section-tag ro">Ce Spun Clienții</div>
+  <h2 class="section-title en">Client <em>Reviews</em></h2><h2 class="section-title ro"><em>Recenzii</em> Clienți</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text en">"Mario sorted our full safety documentation package in record time. Professional, thorough, and everything was compliant first time. Highly recommend."</p><p class="testimonial-text ro">"Mario ne-a pregătit întregul pachet de documentație de securitate în timp record. Profesionist, riguros și totul a fost conform de prima dată."</p><div class="testimonial-author"><div class="testimonial-avatar">SP</div><div><div class="testimonial-name">Sean P.</div><div class="testimonial-role en">Site Manager, Dublin</div><div class="testimonial-role ro">Manager de Șantier, Dublin</div></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text en">"The bilingual training was exactly what our Romanian crew needed. Mario is patient, knowledgeable, and made sure everyone understood the safety requirements."</p><p class="testimonial-text ro">"Instruirea bilingvă a fost exact ce echipa noastră românească avea nevoie. Mario este răbdător și bine informat."</p><div class="testimonial-author"><div class="testimonial-avatar">CT</div><div><div class="testimonial-name">Ciarán T.</div><div class="testimonial-role en">Construction Director</div><div class="testimonial-role ro">Director Construcții</div></div></div></div>
+    <div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text en">"We use Mario for all our method statements and risk assessments. Fast turnaround, always accurate. He's saved us a lot of time before inspections."</p><p class="testimonial-text ro">"Îl folosim pe Mario pentru toate metodele de lucru și evaluările de risc. Livrare rapidă, întotdeauna precis."</p><div class="testimonial-author"><div class="testimonial-avatar">MK</div><div><div class="testimonial-name">Mike K.</div><div class="testimonial-role en">Project Manager, Dublin</div><div class="testimonial-role ro">Manager Proiect, Dublin</div></div></div></div>
+  </div>
+</section>
 
+<section class="contact-section" id="contact">
+  <div class="section-tag en">Get In Touch</div><div class="section-tag ro">Ia Legătura</div>
+  <h2 class="section-title en">Contact <em>Us Today</em></h2><h2 class="section-title ro">Contactează-ne <em>Astăzi</em></h2>
+  <p class="section-desc en">Ready to sort your safety documentation or book a training course? Reach out and we'll get back to you fast.</p>
+  <p class="section-desc ro">Gata să îți organizezi documentația de securitate sau să rezervi un curs? Contactează-ne și vom răspunde rapid.</p>
   <div class="contact-layout" style="margin-top:3rem">
     <div class="contact-info">
-      <div class="contact-item">
-        <div class="contact-item-icon">📞</div>
-        <div class="contact-item-text">
-          <h4 data-en>Phone / WhatsApp</h4>
-          <h4 data-ro>Telefon / WhatsApp</h4>
-          <a href="tel:0873606077">087 360 6077</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">✉️</div>
-        <div class="contact-item-text">
-          <h4>Email</h4>
-          <a href="/cdn-cgi/l/email-protection#caa0a2a5a4b395a8abb8a7aba4bf8ab3aba2a5a5e4a9a5a7"><span class="__cf_email__" data-cfemail="f69c9e99988fa99497849b979883b68f979e9999d895999b">[email&#160;protected]</span></a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">📍</div>
-        <div class="contact-item-text">
-          <h4 data-en>Location</h4>
-          <h4 data-ro>Locație</h4>
-          <p>Dublin, County Dublin, Ireland</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">💼</div>
-        <div class="contact-item-text">
-          <h4>LinkedIn</h4>
-          <a href="https://www.linkedin.com/in/mario-chitac-19603611b/" target="_blank">Mario Chitac</a>
-        </div>
-      </div>
-
-      <div style="margin-top:1rem; padding:1.5rem; background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:14px;">
-        <p style="font-size:14px; color:var(--gray); line-height:1.7" data-en>
-          ⚡ <strong style="color:var(--white)">Fast response guaranteed.</strong> Mario typically responds within a few hours. For urgent documentation needs, call or WhatsApp directly for same-day service.
-        </p>
-        <p style="font-size:14px; color:var(--gray); line-height:1.7" data-ro>
-          ⚡ <strong style="color:var(--white)">Răspuns rapid garantat.</strong> Mario răspunde de obicei în câteva ore. Pentru nevoi urgente de documentație, sună sau trimite WhatsApp pentru servicii în aceeași zi.
-        </p>
+      <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-text"><h4 class="en">Phone / WhatsApp</h4><h4 class="ro">Telefon / WhatsApp</h4><a href="tel:0873606077">087 360 6077</a></div></div>
+      <div class="contact-item"><div class="contact-item-icon">✉️</div><div class="contact-item-text"><h4>Email</h4><a href="mailto:jhony_barmanu@yahoo.com">jhony_barmanu@yahoo.com</a></div></div>
+      <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-text"><h4 class="en">Location</h4><h4 class="ro">Locație</h4><p>Dublin, County Dublin, Ireland</p></div></div>
+      <div class="contact-item"><div class="contact-item-icon">💼</div><div class="contact-item-text"><h4>LinkedIn</h4><a href="https://www.linkedin.com/in/mario-chitac-19603611b/" target="_blank">Mario Chitac</a></div></div>
+      <div class="urgent-box">
+        <p class="en">⚡ <strong style="color:var(--white)">Fast response guaranteed.</strong> Mario typically responds within a few hours. For urgent needs, call or WhatsApp directly for same-day service.</p>
+        <p class="ro">⚡ <strong style="color:var(--white)">Răspuns rapid garantat.</strong> Mario răspunde de obicei în câteva ore. Pentru nevoi urgente, sună sau trimite WhatsApp pentru servicii în aceeași zi.</p>
       </div>
     </div>
-
-    <form class="contact-form" onsubmit="handleSubmit(event)">
+    <form class="contact-form" action="https://formspree.io/f/mnjgknpj" method="POST">
       <div class="form-row">
-        <div class="form-group">
-          <label data-en>First Name</label>
-          <label data-ro>Prenume</label>
-          <input type="text" placeholder="John" required>
-        </div>
-        <div class="form-group">
-          <label data-en>Last Name</label>
-          <label data-ro>Nume</label>
-          <input type="text" placeholder="Doe" required>
-        </div>
+        <div class="form-group"><label class="en">First Name</label><label class="ro">Prenume</label><input type="text" name="firstName" placeholder="John" required></div>
+        <div class="form-group"><label class="en">Last Name</label><label class="ro">Nume</label><input type="text" name="lastName" placeholder="Doe" required></div>
       </div>
+      <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="john@example.com" required></div>
+      <div class="form-group"><label class="en">Phone</label><label class="ro">Telefon</label><input type="tel" name="phone" placeholder="+353..."></div>
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="john@example.com" required>
-      </div>
-      <div class="form-group">
-        <label data-en>Phone</label>
-        <label data-ro>Telefon</label>
-        <input type="tel" placeholder="+353...">
-      </div>
-      <div class="form-group">
-        <label data-en>Service Required</label>
-        <label data-ro>Serviciu Solicitat</label>
-        <select>
-          <option data-en>Select a service...</option>
-          <option data-ro>Selectează un serviciu...</option>
-          <option data-en>Company Safety Statement</option>
-          <option data-ro>Politică de Securitate a Companiei</option>
-          <option data-en>Environmental Statement</option>
-          <option data-ro>Declarație de Mediu</option>
-          <option data-en>Risk Assessment</option>
-          <option data-ro>Evaluare de Risc</option>
-          <option data-en>Method Statement</option>
-          <option data-ro>Metodă de Lucru</option>
-          <option data-en>Training Course</option>
-          <option data-ro>Curs de Instruire</option>
-          <option data-en>Other / Full Package</option>
-          <option data-ro>Altele / Pachet Complet</option>
+        <label class="en">Service Required</label><label class="ro">Serviciu Solicitat</label>
+        <select name="service">
+          <option value="">Select / Selectează...</option>
+          <option>Company Safety Statement / Politică de Securitate</option>
+          <option>Environmental Statement / Declarație de Mediu</option>
+          <option>Risk Assessment / Evaluare de Risc</option>
+          <option>Method Statement / Metodă de Lucru</option>
+          <option>Training Course / Curs de Instruire</option>
+          <option>Full Package / Pachet Complet</option>
         </select>
       </div>
       <div class="form-group">
-        <label data-en>Message</label>
-        <label data-ro>Mesaj</label>
-        <textarea data-en placeholder="Tell us about your project, deadline, and any specific requirements..."></textarea>
-        <textarea data-ro placeholder="Spune-ne despre proiectul tău, termenul limită și cerințele specifice..."></textarea>
+        <label class="en">Message</label><label class="ro">Mesaj</label>
+        <textarea name="message" placeholder="Tell us about your project... / Spune-ne despre proiectul tău..." required></textarea>
       </div>
-      <button type="submit" class="form-submit">
-        ✉ <span data-en>Send Message</span><span data-ro>Trimite Mesajul</span>
-      </button>
+      <button type="submit" class="form-submit">✉ <span class="en-i">Send Message</span><span class="ro-i">Trimite Mesajul</span></button>
     </form>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-logo">Mario<span>Training</span>Solution <span style="font-size:14px;font-weight:400;color:var(--gray)">— M.T.S</span></div>
     <div class="footer-links">
-      <a href="#about" data-en>About</a><a href="#about" data-ro>Despre</a>
-      <a href="#services" data-en>Services</a><a href="#services" data-ro>Servicii</a>
-      <a href="#training" data-en>Training</a><a href="#training" data-ro>Cursuri</a>
+      <a href="#about" class="en-i">About</a><a href="#about" class="ro-i">Despre</a>
+      <a href="#services" class="en-i">Services</a><a href="#services" class="ro-i">Servicii</a>
+      <a href="#training" class="en-i">Training</a><a href="#training" class="ro-i">Cursuri</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p data-en>© 2025 MarioTrainingSolution. All rights reserved. Dublin, Ireland.</p>
-    <p data-ro>© 2025 MarioTrainingSolution. Toate drepturile rezervate. Dublin, Irlanda.</p>
-    <p data-en>Built with <span>♥</span> for safety & compliance.</p>
-    <p data-ro>Construit cu <span>♥</span> pentru securitate și conformitate.</p>
+    <p class="en">© 2025 MarioTrainingSolution. All rights reserved. Dublin, Ireland.</p>
+    <p class="ro">© 2025 MarioTrainingSolution. Toate drepturile rezervate. Dublin, Irlanda.</p>
+    <p>Built with <span>♥</span> for safety & compliance.</p>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ===== LANGUAGE =====
+<script>
 function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  const btn = lang === 'en' ? document.querySelector('.lang-btn:first-child') : document.querySelector('.lang-btn:last-child');
-  btn.classList.add('active');
-  if (lang === 'ro') document.body.classList.add('lang-ro');
-  else document.body.classList.remove('lang-ro');
+  document.getElementById('btn-en').classList.toggle('active', lang==='en');
+  document.getElementById('btn-ro').classList.toggle('active', lang==='ro');
+  document.body.classList.toggle('lang-ro', lang==='ro');
+  localStorage.setItem('mts-lang', lang);
 }
-
-// ===== MOBILE MENU =====
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
-
-// ===== SCROLL NAV =====
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 50) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
+// Restore saved language
+var saved = localStorage.getItem('mts-lang');
+if (saved==='ro') setLang('ro');
+// Scroll nav
+window.addEventListener('scroll', function(){
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>50);
 });
-
-// ===== REVEAL ON SCROLL =====
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-      // Animate skill bars
-      e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-        bar.style.width = bar.dataset.width + '%';
-      });
-    }
-  });
-}, { threshold: 0.1 });
-reveals.forEach(r => io.observe(r));
-setTimeout(() => reveals.forEach(r => r.classList.add("visible")), 800);
-
-// ===== FORM =====
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  const isRo = document.body.classList.contains('lang-ro');
-  btn.innerHTML = isRo ? '✅ Mesaj trimis!' : '✅ Message Sent!';
-  btn.style.background = 'linear-gradient(135deg, #16a34a, #15803d)';
-  setTimeout(() => {
-    btn.innerHTML = isRo ? '✉ Trimite Mesajul' : '✉ Send Message';
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
-}
-
-// ===== COUNTER ANIMATION =====
-function animateCounter(el, target) {
-  let count = 0;
-  con
+// Skill bars on scroll
+var skillsAnimated = false;
+window.addEventListener('scroll', function(){
+  if (skillsAnimated) return;
+  var bars = document.getElementById('skill-bars');
+  if (!bars) return;
+  var rect = bars.getBoundingClientRect();
+  if (rect.top < window.innerHeight - 100) {
+    document.querySelectorAll('.skill-bar-fill').forEach(function(bar){
+      bar.style.width = bar.dataset.width + '%';
+    });
+    skillsAnimated = true;
+  }
+});
+</script>
+</body>
+</html>
