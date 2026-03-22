@@ -1,371 +1,1275 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-<meta http-equiv="Pragma" content="no-cache"/>
-<meta http-equiv="Expires" content="0"/>
-<title>Family Rescue: 99 Nights — Fresh Build</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTS – Mario Training Solution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&family=Oswald:wght@700&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0d14;color:#e7ecf3;display:flex;flex-direction:column}
-#topbar{display:flex;gap:8px;align-items:center;padding:8px 12px;background:#0f172a;border-bottom:1px solid #1f2a44;flex-wrap:wrap}
-h1{font-size:16px;margin:0 8px 0 0}
-.badge{background:#0f172a;border:1px solid #223047;border-radius:9px;padding:3px 7px}
-button{border:none;padding:6px 10px;border-radius:10px;background:#1e293b;color:#e7ecf3;cursor:pointer}
-button:hover{filter:brightness(1.1)}
-#craft{margin-left:auto;display:flex;gap:10px;align-items:center}
-#inv{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-#inv .item{background:#111827;border:1px solid #334155;padding:3px 7px;border-radius:8px}
-#wrap{flex:1;display:flex;align-items:center;justify-content:center;background:#07090f}
-#game{display:block;width:960px;height:600px;max-width:100%;border:0;image-rendering:pixelated}
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:    #0b1727;
+  --navy2:   #0f2040;
+  --navy3:   #162d52;
+  --orange:  #f97316;
+  --amber:   #fbbf24;
+  --white:   #f8faff;
+  --gray:    #9ab0c9;
+  --card-bg: #111f35;
+  --radius:  12px;
+  --transition: 0.35s cubic-bezier(.4,0,.2,1);
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: default;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+::selection { background: var(--orange); color: #fff; }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 3px; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  height: 72px;
+  background: rgba(11,23,39,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(249,115,22,0.15);
+  transition: var(--transition);
+}
+nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.5); }
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-logo-badge {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px; font-weight: 700; color: #fff;
+  letter-spacing: 1px;
+  box-shadow: 0 0 18px rgba(249,115,22,0.4);
+}
+.nav-logo-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px; font-weight: 800; letter-spacing: 1px;
+  line-height: 1.1;
+}
+.nav-logo-text span { color: var(--orange); }
+.nav-links {
+  display: flex; align-items: center; gap: 2rem; list-style: none;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--gray);
+  transition: var(--transition); position: relative; padding-bottom: 4px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background: var(--orange);
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+
+/* Language Toggle */
+.lang-toggle {
+  display: flex; background: rgba(255,255,255,0.08);
+  border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12);
+}
+.lang-btn {
+  padding: 6px 14px; font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; cursor: pointer; transition: var(--transition);
+  color: var(--gray); border: none; background: transparent;
+  font-family: 'Nunito Sans', sans-serif;
+}
+.lang-btn.active {
+  background: var(--orange); color: #fff;
+  box-shadow: 0 0 12px rgba(249,115,22,0.4);
+}
+
+/* Mobile menu button */
+.menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.menu-btn span { display: block; width: 24px; height: 2px; background: var(--white); transition: var(--transition); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+  padding: 0 5vw;
+  padding-top: 72px;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(249,115,22,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(251,191,36,0.06) 0%, transparent 50%),
+              linear-gradient(135deg, #0b1727 0%, #0f2040 50%, #0b1727 100%);
+}
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(249,115,22,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249,115,22,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+/* Diagonal accent */
+.hero-diagonal {
+  position: absolute; right: -5%; top: 0; bottom: 0;
+  width: 55%; z-index: 0;
+  background: linear-gradient(135deg, rgba(249,115,22,0.07) 0%, rgba(251,191,36,0.04) 100%);
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+}
+/* Animated floating shapes */
+.hero-shape {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: 0.12; animation: floatShape 8s ease-in-out infinite;
+}
+.hero-shape-1 { width: 500px; height: 500px; background: var(--orange); top: -150px; right: 10%; animation-delay: 0s; }
+.hero-shape-2 { width: 300px; height: 300px; background: var(--amber); bottom: 0; right: 35%; animation-delay: 3s; }
+@keyframes floatShape {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 700px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(249,115,22,0.12); border: 1px solid rgba(249,115,22,0.3);
+  border-radius: 100px; padding: 6px 18px; margin-bottom: 2rem;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.1s;
+}
+.hero-eyebrow-dot {
+  width: 8px; height: 8px; background: var(--orange); border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,0.5)} 50%{box-shadow:0 0 0 8px transparent} }
+.hero-eyebrow span { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); }
+
+.hero-headline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 900; line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.2s;
+}
+.hero-headline .line2 { color: var(--orange); display: block; }
+.hero-headline .mts { 
+  font-size: 0.65em; 
+  background: linear-gradient(90deg, var(--orange), var(--amber));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-sub {
+  margin: 1.5rem 0 2.5rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--gray);
+  max-width: 500px;
+  line-height: 1.7;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.35s;
+}
+
+.hero-badges {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.45s;
+}
+.badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px; padding: 8px 18px;
+  font-size: 13px; font-weight: 600; color: var(--gray);
+}
+.badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+
+.hero-cta {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 0.8s ease both; animation-delay: 0.55s;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--orange), #e55c00);
+  color: #fff; padding: 16px 32px;
+  border-radius: 10px; font-weight: 700; font-size: 15px;
+  letter-spacing: 0.5px; border: none; cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 8px 32px rgba(249,115,22,0.35);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(249,115,22,0.5);
+}
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--white);
+  padding: 16px 32px; border-radius: 10px;
+  font-weight: 700; font-size: 15px; letter-spacing: 0.5px;
+  border: 1px solid rgba(255,255,255,0.2); cursor: pointer;
+  transition: var(--transition);
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.08); transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: fadeUp 1s ease both 1s;
+}
+.scroll-indicator span { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+.scroll-line {
+  width: 1px; height: 50px; background: linear-gradient(to bottom, var(--orange), transparent);
+  animation: scrollDown 2s ease infinite;
+}
+@keyframes scrollDown { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 50.01% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* Hero floating card */
+.hero-card {
+  position: absolute; right: 5vw; top: 50%; transform: translateY(-50%);
+  z-index: 2; background: var(--card-bg);
+  border: 1px solid rgba(249,115,22,0.2);
+  border-radius: 20px; padding: 2rem;
+  width: min(380px, 90vw);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(249,115,22,0.1);
+  animation: fadeLeft 0.8s ease both 0.5s;
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+@keyframes fadeLeft { from { opacity:0; transform: translateY(-50%) translateX(40px); } to { opacity:1; transform: translateY(-50%) translateX(0); } }
+
+.profile-row {
+  display: flex; align-items: center; gap: 16px;
+}
+.profile-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px; font-weight: 900; color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(249,115,22,0.4);
+}
+.profile-info h3 { font-size: 18px; font-weight: 700; }
+.profile-info p { font-size: 13px; color: var(--orange); font-weight: 600; margin-top: 2px; }
+.profile-info small { font-size: 12px; color: var(--gray); }
+
+.card-divider { height: 1px; background: rgba(255,255,255,0.07); }
+
+.stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.stat-item {
+  background: rgba(255,255,255,0.04); border-radius: 10px;
+  padding: 14px; text-align: center;
+}
+.stat-item .num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px; font-weight: 800; color: var(--orange);
+  line-height: 1;
+}
+.stat-item .label { font-size: 11px; color: var(--gray); margin-top: 4px; letter-spacing: 0.5px; }
+
+.cert-badges {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.cert-badge {
+  background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.25);
+  border-radius: 6px; padding: 5px 10px;
+  font-size: 11px; font-weight: 600; color: var(--orange); letter-spacing: 0.5px;
+}
+
+/* ===== SECTIONS ===== */
+section { padding: 6rem 5vw; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--orange);
+  margin-bottom: 1rem;
+}
+.section-tag::before {
+  content: ''; display: block; width: 24px; height: 2px;
+  background: var(--orange);
+}
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800; text-transform: uppercase;
+  line-height: 1; margin-bottom: 1.5rem;
+}
+.section-title em { color: var(--orange); font-style: normal; }
+.section-desc {
+  font-size: 1.05rem; color: var(--gray); max-width: 620px; line-height: 1.75;
+}
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  background: linear-gradient(90deg, var(--orange) 0%, #e55c00 50%, var(--amber) 100%);
+  padding: 2.5rem 5vw;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; text-align: center;
+}
+.stats-bar .s-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 3rem; font-weight: 900; line-height: 1; color: #fff;
+}
+.stats-bar .s-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); margin-top: 4px; }
+
+/* ===== ABOUT ===== */
+.about-section { background: var(--navy2); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+.about-img-wrap {
+  position: relative;
+}
+.about-img-box {
+  width: 100%; aspect-ratio: 3/4; max-height: 500px;
+  border-radius: 20px; overflow: hidden;
+  background: linear-gradient(135deg, var(--navy3), var(--card-bg));
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(249,115,22,0.2);
+  position: relative;
+}
+.about-img-placeholder {
+  text-align: center; color: var(--gray);
+  font-size: 14px; padding: 2rem;
+}
+.about-img-placeholder .initials {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 80px; font-weight: 900;
+  color: var(--orange); opacity: 0.4;
+  line-height: 1; display: block; margin-bottom: 1rem;
+}
+.about-img-corner {
+  position: absolute; bottom: -20px; right: -20px;
+  width: 100px; height: 100px;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  border-radius: 20px; z-index: -1;
+  opacity: 0.3;
+}
+.about-orange-dot {
+  position: absolute; top: -16px; left: -16px;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--orange); opacity: 0.15;
+  filter: blur(20px);
+}
+.about-experience-badge {
+  position: absolute; bottom: 2rem; right: -2rem;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  border-radius: 14px; padding: 16px 20px; text-align: center;
+  box-shadow: 0 16px 40px rgba(249,115,22,0.3);
+}
+.about-experience-badge .years {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 40px; font-weight: 900; color: #fff; line-height: 1;
+}
+.about-experience-badge .ytext { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9); }
+
+.about-text { display: flex; flex-direction: column; gap: 1.5rem; }
+.skill-bar-group { display: flex; flex-direction: column; gap: 12px; }
+.skill-bar-item {}
+.skill-bar-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; font-weight: 600; }
+.skill-bar-label span:last-child { color: var(--orange); }
+.skill-bar-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.skill-bar-fill {
+  height: 100%; background: linear-gradient(90deg, var(--orange), var(--amber));
+  border-radius: 3px; width: 0;
+  transition: width 1.5s cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== SERVICES ===== */
+.services-section { background: var(--navy); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 3rem;
+  max-width: 1200px;
+}
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: var(--transition);
+  position: relative; overflow: hidden;
+  cursor: default;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--amber));
+  transform: scaleX(0); transform-origin: left;
+  transition: var(--transition);
+}
+.service-card:hover { transform: translateY(-6px); border-color: rgba(249,115,22,0.3); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: rgba(249,115,22,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 1.25rem;
+  border: 1px solid rgba(249,115,22,0.2);
+  transition: var(--transition);
+}
+.service-card:hover .service-icon { background: rgba(249,115,22,0.2); }
+.service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.service-card p { font-size: 14px; color: var(--gray); line-height: 1.65; }
+.service-card-number {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 40px; font-weight: 900;
+  color: rgba(255,255,255,0.04); line-height: 1;
+}
+
+/* ===== TRAINING ===== */
+.training-section { background: var(--navy2); }
+.training-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; max-width: 1200px; }
+.training-courses { display: flex; flex-direction: column; gap: 12px; margin-top: 3rem; }
+.course-card {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px; padding: 1.25rem 1.5rem;
+  transition: var(--transition); cursor: default;
+}
+.course-card:hover { border-color: rgba(249,115,22,0.3); transform: translateX(6px); }
+.course-icon { font-size: 28px; flex-shrink: 0; }
+.course-info h4 { font-size: 15px; font-weight: 700; }
+.course-info p { font-size: 13px; color: var(--gray); margin-top: 2px; }
+.course-badge {
+  margin-left: auto; background: rgba(249,115,22,0.1);
+  border: 1px solid rgba(249,115,22,0.25); border-radius: 6px;
+  padding: 4px 10px; font-size: 11px; font-weight: 700;
+  color: var(--orange); white-space: nowrap; flex-shrink: 0;
+}
+.training-why { margin-top: 3rem; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 2rem; }
+.why-card {
+  background: linear-gradient(135deg, var(--card-bg), rgba(249,115,22,0.05));
+  border: 1px solid rgba(249,115,22,0.15);
+  border-radius: 14px; padding: 1.75rem;
+  text-align: center;
+}
+.why-card .why-icon { font-size: 36px; margin-bottom: 0.75rem; }
+.why-card h4 { font-weight: 700; margin-bottom: 6px; }
+.why-card p { font-size: 13px; color: var(--gray); }
+
+/* ===== PROCESS ===== */
+.process-section { background: var(--navy); }
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 3rem; position: relative; max-width: 1100px;
+}
+.process-steps::after {
+  content: ''; position: absolute; top: 32px; left: 12.5%; right: 12.5%;
+  height: 2px; background: linear-gradient(90deg, var(--orange), var(--amber));
+  z-index: 0;
+}
+.step {
+  text-align: center; padding: 0 1.5rem;
+  position: relative; z-index: 1;
+}
+.step-num {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--amber));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px; font-weight: 900; color: #fff;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 0 20px rgba(249,115,22,0.3);
+}
+.step h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.step p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+
+/* ===== CONTACT ===== */
+.contact-section { background: var(--navy2); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; max-width: 1100px; }
+.contact-info { display: flex; flex-direction: column; gap: 2rem; }
+.contact-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+.contact-item-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.contact-item-text h4 { font-weight: 700; margin-bottom: 4px; }
+.contact-item-text a, .contact-item-text p { font-size: 15px; color: var(--gray); transition: var(--transition); }
+.contact-item-text a:hover { color: var(--orange); }
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: var(--gray); }
+.form-group input, .form-group textarea, .form-group select {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 14px 18px;
+  color: var(--white); font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px; outline: none; transition: var(--transition);
+  width: 100%;
+}
+.form-group select option { background: var(--card-bg); }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  border-color: var(--orange); box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-submit {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(135deg, var(--orange), #e55c00);
+  color: #fff; padding: 18px;
+  border-radius: 10px; font-weight: 700; font-size: 16px;
+  border: none; cursor: pointer; transition: var(--transition);
+  box-shadow: 0 8px 32px rgba(249,115,22,0.3);
+}
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(249,115,22,0.5); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #060e1a; padding: 3rem 5vw 2rem;
+  border-top: 1px solid rgba(249,115,22,0.15);
+}
+.footer-top {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 24px; font-weight: 900; letter-spacing: 1px;
+}
+.footer-logo span { color: var(--orange); }
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: var(--gray); transition: var(--transition); }
+.footer-links a:hover { color: var(--orange); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 13px; color: var(--gray); }
+.footer-bottom span { color: var(--orange); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .hero-card { display: none; }
+  .hero-content { max-width: 100%; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about-experience-badge { right: 1rem; }
+  .training-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .process-steps::after { display: none; }
+  .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { display: none; }
+  .menu-btn { display: flex; }
+  .why-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-cta { flex-direction: column; }
+  .btn-primary, .btn-outline { justify-content: center; }
+}
+
+/* ===== LANG HIDDEN ===== */
+[data-ro] { display: none; }
+body.lang-ro [data-en] { display: none; }
+body.lang-ro [data-ro] { display: block; }
+body.lang-ro span[data-en] { display: none; }
+body.lang-ro span[data-ro] { display: inline; }
+body.lang-ro div[data-ro] { display: flex; }
+
+/* mobile menu */
+.mobile-menu {
+  display: none; flex-direction: column; gap: 1rem;
+  position: fixed; top: 72px; left: 0; right: 0; z-index: 999;
+  background: rgba(11,23,39,0.97); backdrop-filter: blur(14px);
+  padding: 2rem 5vw;
+  border-bottom: 1px solid rgba(249,115,22,0.15);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 18px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; }
+.mobile-menu a:hover { color: var(--orange); }
 </style>
 </head>
 <body>
-  <div id="topbar">
-    <h1>Family Rescue: 99 Nights</h1>
-    <button id="btnHelp">Help</button>
-    <button id="btnRestart">Restart</button>
-    <button id="btnPause">Pause</button>
-    <span class="badge" id="bDay">Day 1</span>
-    <span class="badge" id="bTime">Dawn</span>
-    <span class="badge" id="bNights">Nights left: 99</span>
-    <span class="badge" id="bSigils">Runes: 0/3</span>
-    <span class="badge" id="bGoal">Goal: Rescue the child & build a house</span>
-    <div id="craft">
-      <span>Craft:</span>
-      <button data-craft="shovel">Shovel (wood3+stone2)</button>
-      <button data-craft="frame">House Frame (wood20+stone10)</button>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-badge">MTS</div>
+    <div class="nav-logo-text">Mario<span>Training</span><br>Solution</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about" data-en>About</a><a href="#about" data-ro>Despre</a></li>
+    <li><a href="#services" data-en>Services</a><a href="#services" data-ro>Servicii</a></li>
+    <li><a href="#training" data-en>Training</a><a href="#training" data-ro>Cursuri</a></li>
+    <li><a href="#contact" data-en>Contact</a><a href="#contact" data-ro>Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ro')">RO</button>
+    </div>
+    <div class="menu-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
     </div>
   </div>
-  <div id="wrap"><canvas id="game" width="960" height="600"></canvas></div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()" data-en>About</a>
+  <a href="#about" onclick="toggleMenu()" data-ro>Despre</a>
+  <a href="#services" onclick="toggleMenu()" data-en>Services</a>
+  <a href="#services" onclick="toggleMenu()" data-ro>Servicii</a>
+  <a href="#training" onclick="toggleMenu()" data-en>Training</a>
+  <a href="#training" onclick="toggleMenu()" data-ro>Cursuri</a>
+  <a href="#contact" onclick="toggleMenu()" data-en>Contact</a>
+  <a href="#contact" onclick="toggleMenu()" data-ro>Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-diagonal"></div>
+  <div class="hero-shape hero-shape-1"></div>
+  <div class="hero-shape hero-shape-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <span data-en>Dublin, Ireland · Est. 2019</span>
+      <span data-ro>Dublin, Irlanda · Înf. 2019</span>
+    </div>
+
+    <h1 class="hero-headline">
+      <span data-en>Safety<br><span class="line2">Training &</span><br>Compliance</span>
+      <span data-ro>Securitate<br><span class="line2">Instruire &</span><br>Conformitate</span>
+    </h1>
+
+    <p class="hero-sub">
+      <span data-en>Professional HSE advisory, documentation, and certified training for the construction industry. Fast. Reliable. Expert.</span>
+      <span data-ro>Consultanță HSE profesională, documentație și instruire certificată pentru industria construcțiilor. Rapid. De încredere. Expert.</span>
+    </p>
+
+    <div class="hero-badges">
+      <div class="badge"><div class="dot"></div><span>QQI Level 6</span></div>
+      <div class="badge"><div class="dot"></div><span data-en>MEWP Certified</span><span data-ro>Certificat MEWP</span></div>
+      <div class="badge"><div class="dot"></div><span data-en>Bilingual EN/RO</span><span data-ro>Bilingv EN/RO</span></div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">
+        ✉
+        <span data-en>Get In Touch</span>
+        <span data-ro>Contactează-mă</span>
+      </a>
+      <a href="#services" class="btn-outline">
+        <span data-en>Our Services</span>
+        <span data-ro>Serviciile Noastre</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating Profile Card -->
+  <div class="hero-card">
+    <div class="profile-row">
+      <div class="profile-avatar">MC</div>
+      <div class="profile-info">
+        <h3>Mario Chitac</h3>
+        <p data-en>HSE Advisor & Trainer</p>
+        <p data-ro>Consilier HSE & Instructor</p>
+        <small>📍 Dublin, Ireland</small>
+      </div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="stat-grid">
+      <div class="stat-item">
+        <div class="num">11+</div>
+        <div class="label" data-en>Years Exp.</div>
+        <div class="label" data-ro>Ani Exp.</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">500+</div>
+        <div class="label" data-en>Connections</div>
+        <div class="label" data-ro>Conexiuni</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">6+</div>
+        <div class="label" data-en>Certifications</div>
+        <div class="label" data-ro>Certificări</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">2</div>
+        <div class="label" data-en>Languages</div>
+        <div class="label" data-ro>Limbi</div>
+      </div>
+    </div>
+    <div class="card-divider"></div>
+    <div class="cert-badges">
+      <span class="cert-badge">QQI L6</span>
+      <span class="cert-badge">MEWP</span>
+      <span class="cert-badge">WAH</span>
+      <span class="cert-badge">Abrasive</span>
+      <span class="cert-badge">Harness</span>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span data-en>Scroll</span>
+    <span data-ro>Derulați</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div>
+    <div class="s-num">11+</div>
+    <div class="s-label" data-en>Years Experience</div>
+    <div class="s-label" data-ro>Ani Experiență</div>
+  </div>
+  <div>
+    <div class="s-num">100%</div>
+    <div class="s-label" data-en>Compliance Rate</div>
+    <div class="s-label" data-ro>Rată Conformitate</div>
+  </div>
+  <div>
+    <div class="s-num">6+</div>
+    <div class="s-label" data-en>Training Programs</div>
+    <div class="s-label" data-ro>Programe Instruire</div>
+  </div>
+  <div>
+    <div class="s-num">2</div>
+    <div class="s-label" data-en>Languages</div>
+    <div class="s-label" data-ro>Limbi</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section reveal" id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-orange-dot"></div>
+      <div class="about-img-box">
+        <div class="about-img-placeholder">
+          <span class="initials">MC</span>
+          <p data-en>Mario Chitac<br>HSE Advisor & Instructor</p>
+          <p data-ro>Mario Chitac<br>Consilier HSE & Instructor</p>
+        </div>
+      </div>
+      <div class="about-img-corner"></div>
+      <div class="about-experience-badge">
+        <div class="years">11+</div>
+        <div class="ytext" data-en>Years in<br>Industry</div>
+        <div class="ytext" data-ro>Ani în<br>Industrie</div>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <div>
+        <div class="section-tag" data-en>About Mario</div>
+        <div class="section-tag" data-ro>Despre Mario</div>
+        <h2 class="section-title" data-en>Your <em>Expert</em><br>HSE Professional</h2>
+        <h2 class="section-title" data-ro>Profesionistul Tău<br><em>Expert</em> HSE</h2>
+        <p class="section-desc" data-en>
+          A highly adaptable Health, Safety & Environment Advisor with over 11 years in the construction industry. Mario brings bilingual expertise (English & Romanian), working with some of Dublin's biggest builders delivering proactive safety culture through innovative methods.
+        </p>
+        <p class="section-desc" data-ro>
+          Un Consilier de Sănătate, Securitate și Mediu extrem de adaptabil, cu peste 11 ani în industria construcțiilor. Mario aduce expertiză bilingvă (engleză și română), colaborând cu unii dintre cei mai mari constructori din Dublin.
+        </p>
+      </div>
+
+      <div class="skill-bar-group">
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span data-en>HSE Advisory</span><span data-ro>Consultanță HSE</span>
+            <span>95%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span data-en>Safety Documentation</span><span data-ro>Documentație Securitate</span>
+            <span>98%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="98"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span data-en>Training Delivery</span><span data-ro>Livrare Cursuri</span>
+            <span>97%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="97"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label">
+            <span data-en>Risk Assessment</span><span data-ro>Evaluare de Risc</span>
+            <span>96%</span>
+          </div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="96"></div></div>
+        </div>
+      </div>
+
+      <a href="#contact" class="btn-primary" style="width:fit-content">
+        ✉ <span data-en>Contact Mario</span><span data-ro>Contactează-l pe Mario</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section reveal" id="services">
+  <div class="section-tag" data-en>What We Do</div>
+  <div class="section-tag" data-ro>Ce Facem</div>
+  <h2 class="section-title" data-en>Our <em>Services</em></h2>
+  <h2 class="section-title" data-ro>Serviciile <em>Noastre</em></h2>
+  <p class="section-desc" data-en>Full-spectrum construction compliance documentation and HSE advisory — delivered fast, accurately, and professionally.</p>
+  <p class="section-desc" data-ro>Documentație completă de conformitate în construcții și consultanță HSE — livrate rapid, precis și profesional.</p>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-card-number">01</div>
+      <div class="service-icon">🛡️</div>
+      <h3 data-en>Company Safety Statements</h3>
+      <h3 data-ro>Politici de Securitate ale Companiei</h3>
+      <p data-en>Comprehensive, legally-compliant safety statements tailored to your company's operations and Irish health & safety legislation.</p>
+      <p data-ro>Politici de securitate complete și conforme cu legislația irlandeză, adaptate la operațiunile companiei tale.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-card-number">02</div>
+      <div class="service-icon">🌿</div>
+      <h3 data-en>Environmental Statements</h3>
+      <h3 data-ro>Declarații de Mediu</h3>
+      <p data-en>Detailed environmental impact assessments and compliance documentation meeting current environmental standards on site.</p>
+      <p data-ro>Evaluări detaliate ale impactului de mediu și documentație de conformitate conform standardelor actuale.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-card-number">03</div>
+      <div class="service-icon">⚠️</div>
+      <h3 data-en>Operational Risk Assessments</h3>
+      <h3 data-ro>Evaluări de Risc Operațional</h3>
+      <p data-en>Thorough risk identification and mitigation strategies for all construction activities, ensuring your team works safely every day.</p>
+      <p data-ro>Identificarea detaliată a riscurilor și strategii de atenuare pentru toate activitățile de construcție.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-card-number">04</div>
+      <div class="service-icon">📋</div>
+      <h3 data-en>Method Statements</h3>
+      <h3 data-ro>Metode de Lucru (RAMS)</h3>
+      <p data-en>Step-by-step method statements (RAMS) outlining safe working procedures for any task — site-specific and audit-ready.</p>
+      <p data-ro>Declarații de metodă pas-cu-pas (RAMS) care descriu procedurile de lucru sigure pentru orice activitate de pe șantier.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-card-number">05</div>
+      <div class="service-icon">📊</div>
+      <h3 data-en>Risk Assessments</h3>
+      <h3 data-ro>Evaluări de Risc</h3>
+      <p data-en>Systematic risk assessments for activities, equipment, and personnel exposure — clearly documented and actionable.</p>
+      <p data-ro>Evaluări sistematice de risc pentru activități, echipamente și expunerea personalului — documentate clar și acționabile.</p>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-card-number">06</div>
+      <div class="service-icon">📁</div>
+      <h3 data-en>Full Compliance Documentation</h3>
+      <h3 data-ro>Documentație Completă de Conformitate</h3>
+      <p data-en>Any other construction compliance documentation you need — inspections, safety plans, audits, inductions, and more.</p>
+      <p data-ro>Orice altă documentație de conformitate necesară în construcții — inspecții, planuri de securitate, audituri și altele.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section class="training-section reveal" id="training">
+  <div class="training-layout">
+    <div>
+      <div class="section-tag" data-en>Certified Training</div>
+      <div class="section-tag" data-ro>Instruire Certificată</div>
+      <h2 class="section-title" data-en>Training <em>Courses</em></h2>
+      <h2 class="section-title" data-ro>Cursuri de <em>Instruire</em></h2>
+      <p class="section-desc" data-en>QQI Level 6 certified, bilingual (English & Romanian) training programs delivered on-site across Dublin and surrounding areas.</p>
+      <p class="section-desc" data-ro>Programe de instruire certificate QQI Nivel 6, bilingve (engleză și română), livrate direct pe șantier în Dublin și împrejurimi.</p>
+
+      <div class="training-courses">
+        <div class="course-card">
+          <div class="course-icon">🤲</div>
+          <div class="course-info">
+            <h4 data-en>Manual Handling</h4>
+            <h4 data-ro>Manipulare Manuală</h4>
+            <p data-en>Safe lifting and carrying techniques</p>
+            <p data-ro>Tehnici sigure de ridicare și transport</p>
+          </div>
+          <span class="course-badge">QQI L6</span>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon">🏗️</div>
+          <div class="course-info">
+            <h4>MEWP</h4>
+            <p data-en>Mobile Elevated Work Platform operation</p>
+            <p data-ro>Operarea platformei mobile de lucru la înălțime</p>
+          </div>
+          <span class="course-badge" data-en>Certified</span>
+          <span class="course-badge" data-ro>Certificat</span>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon">🧗</div>
+          <div class="course-info">
+            <h4 data-en>Working at Height</h4>
+            <h4 data-ro>Lucru la Înălțime</h4>
+            <p data-en>Safety procedures for elevated work</p>
+            <p data-ro>Proceduri de securitate pentru lucrul la înălțime</p>
+          </div>
+          <span class="course-badge" data-en>Certified</span>
+          <span class="course-badge" data-ro>Certificat</span>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon">🔧</div>
+          <div class="course-info">
+            <h4 data-en>Abrasive Wheels</h4>
+            <h4 data-ro>Discuri Abrazive</h4>
+            <p data-en>Safe use and handling of abrasive equipment</p>
+            <p data-ro>Utilizare și manipulare sigură a echipamentelor abrazive</p>
+          </div>
+          <span class="course-badge" data-en>Certified</span>
+          <span class="course-badge" data-ro>Certificat</span>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon">🦺</div>
+          <div class="course-info">
+            <h4 data-en>Harness & Lanyard Inspection</h4>
+            <h4 data-ro>Inspecție Hamuri & Cordine</h4>
+            <p data-en>Equipment inspection and pre-use checks</p>
+            <p data-ro>Inspecția echipamentului și verificări pre-utilizare</p>
+          </div>
+          <span class="course-badge" data-en>Inspector</span>
+          <span class="course-badge" data-ro>Inspector</span>
+        </div>
+
+        <div class="course-card">
+          <div class="course-icon">🚜</div>
+          <div class="course-info">
+            <h4 data-en>Forklift Operation</h4>
+            <h4 data-ro>Operare Stivuitor</h4>
+            <p data-en>Safe forklift operation on construction sites</p>
+            <p data-ro>Operare sigură a stivuitorului pe șantier</p>
+          </div>
+          <span class="course-badge" data-en>Certified</span>
+          <span class="course-badge" data-ro>Certificat</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="training-why">
+      <div class="section-tag" data-en>Why Choose MTS</div>
+      <div class="section-tag" data-ro>De Ce MTS</div>
+      <h2 class="section-title" data-en>The <em>MTS</em><br>Advantage</h2>
+      <h2 class="section-title" data-ro>Avantajul<br><em>MTS</em></h2>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">⚡</div>
+          <h4 data-en>Fast Turnaround</h4>
+          <h4 data-ro>Livrare Rapidă</h4>
+          <p data-en>Documents and training delivered quickly without cutting corners on quality.</p>
+          <p data-ro>Documente și cursuri livrate rapid, fără compromisuri la calitate.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">✅</div>
+          <h4 data-en>Reliable & Accurate</h4>
+          <h4 data-ro>De Încredere & Precis</h4>
+          <p data-en>Every document is checked and compliant with Irish legislation and best practices.</p>
+          <p data-ro>Fiecare document este verificat și conform cu legislația irlandeză.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🌐</div>
+          <h4 data-en>Bilingual</h4>
+          <h4 data-ro>Bilingv</h4>
+          <p data-en>Full service in both English and Romanian — no language barriers on your site.</p>
+          <p data-ro>Servicii complete în engleză și română — fără bariere lingvistice pe șantierul tău.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🏆</div>
+          <h4 data-en>Experienced</h4>
+          <h4 data-ro>Experimentat</h4>
+          <p data-en>Over 11 years with some of Dublin's biggest construction companies.</p>
+          <p data-ro>Peste 11 ani cu unii dintre cei mai mari constructori din Dublin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section reveal" id="process">
+  <div class="section-tag" data-en>How It Works</div>
+  <div class="section-tag" data-ro>Cum Funcționează</div>
+  <h2 class="section-title" data-en>Simple <em>Process</em></h2>
+  <h2 class="section-title" data-ro><em>Procesul</em> Simplu</h2>
+
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4 data-en>Contact Us</h4>
+      <h4 data-ro>Contactează-ne</h4>
+      <p data-en>Reach out by phone, email or WhatsApp with your requirements.</p>
+      <p data-ro>Contactează-ne prin telefon, email sau WhatsApp cu cerințele tale.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4 data-en>Consultation</h4>
+      <h4 data-ro>Consultare</h4>
+      <p data-en>We discuss your project needs and identify the exact documentation required.</p>
+      <p data-ro>Discutăm nevoile proiectului tău și identificăm documentația necesară.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4 data-en>Preparation</h4>
+      <h4 data-ro>Pregătire</h4>
+      <p data-en>We prepare all documents and training schedules, fully tailored to your site.</p>
+      <p data-ro>Pregătim toate documentele și programele de instruire, adaptate șantierului tău.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4 data-en>Delivery</h4>
+      <h4 data-ro>Livrare</h4>
+      <p data-en>Fast, accurate delivery — ready for inspections, audits, and compliance checks.</p>
+      <p data-ro>Livrare rapidă și precisă — gata pentru inspecții, audituri și verificări de conformitate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section reveal" id="contact">
+  <div class="section-tag" data-en>Get In Touch</div>
+  <div class="section-tag" data-ro>Ia Legătura</div>
+  <h2 class="section-title" data-en>Contact <em>Us Today</em></h2>
+  <h2 class="section-title" data-ro>Contactează-ne <em>Astăzi</em></h2>
+  <p class="section-desc" data-en>Ready to sort your safety documentation or book a training course? Reach out and we'll get back to you fast.</p>
+  <p class="section-desc" data-ro>Gata să îți organizezi documentația de securitate sau să rezervi un curs? Contactează-ne și vom răspunde rapid.</p>
+
+  <div class="contact-layout" style="margin-top:3rem">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div class="contact-item-text">
+          <h4 data-en>Phone / WhatsApp</h4>
+          <h4 data-ro>Telefon / WhatsApp</h4>
+          <a href="tel:0873606077">087 360 6077</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div class="contact-item-text">
+          <h4>Email</h4>
+          <a href="mailto:jhony_barmanu@yahoo.com">jhony_barmanu@yahoo.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div class="contact-item-text">
+          <h4 data-en>Location</h4>
+          <h4 data-ro>Locație</h4>
+          <p>Dublin, County Dublin, Ireland</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">💼</div>
+        <div class="contact-item-text">
+          <h4>LinkedIn</h4>
+          <a href="https://www.linkedin.com/in/mario-chitac-19603611b/" target="_blank">Mario Chitac</a>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem; padding:1.5rem; background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:14px;">
+        <p style="font-size:14px; color:var(--gray); line-height:1.7" data-en>
+          ⚡ <strong style="color:var(--white)">Fast response guaranteed.</strong> Mario typically responds within a few hours. For urgent documentation needs, call or WhatsApp directly for same-day service.
+        </p>
+        <p style="font-size:14px; color:var(--gray); line-height:1.7" data-ro>
+          ⚡ <strong style="color:var(--white)">Răspuns rapid garantat.</strong> Mario răspunde de obicei în câteva ore. Pentru nevoi urgente de documentație, sună sau trimite WhatsApp pentru servicii în aceeași zi.
+        </p>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label data-en>First Name</label>
+          <label data-ro>Prenume</label>
+          <input type="text" placeholder="John" required>
+        </div>
+        <div class="form-group">
+          <label data-en>Last Name</label>
+          <label data-ro>Nume</label>
+          <input type="text" placeholder="Doe" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="john@example.com" required>
+      </div>
+      <div class="form-group">
+        <label data-en>Phone</label>
+        <label data-ro>Telefon</label>
+        <input type="tel" placeholder="+353...">
+      </div>
+      <div class="form-group">
+        <label data-en>Service Required</label>
+        <label data-ro>Serviciu Solicitat</label>
+        <select>
+          <option data-en>Select a service...</option>
+          <option data-ro>Selectează un serviciu...</option>
+          <option data-en>Company Safety Statement</option>
+          <option data-ro>Politică de Securitate a Companiei</option>
+          <option data-en>Environmental Statement</option>
+          <option data-ro>Declarație de Mediu</option>
+          <option data-en>Risk Assessment</option>
+          <option data-ro>Evaluare de Risc</option>
+          <option data-en>Method Statement</option>
+          <option data-ro>Metodă de Lucru</option>
+          <option data-en>Training Course</option>
+          <option data-ro>Curs de Instruire</option>
+          <option data-en>Other / Full Package</option>
+          <option data-ro>Altele / Pachet Complet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label data-en>Message</label>
+        <label data-ro>Mesaj</label>
+        <textarea data-en placeholder="Tell us about your project, deadline, and any specific requirements..."></textarea>
+        <textarea data-ro placeholder="Spune-ne despre proiectul tău, termenul limită și cerințele specifice..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">
+        ✉ <span data-en>Send Message</span><span data-ro>Trimite Mesajul</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">Mario<span>Training</span>Solution <span style="font-size:14px;font-weight:400;color:var(--gray)">— M.T.S</span></div>
+    <div class="footer-links">
+      <a href="#about" data-en>About</a><a href="#about" data-ro>Despre</a>
+      <a href="#services" data-en>Services</a><a href="#services" data-ro>Servicii</a>
+      <a href="#training" data-en>Training</a><a href="#training" data-ro>Cursuri</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-en>© 2025 MarioTrainingSolution. All rights reserved. Dublin, Ireland.</p>
+    <p data-ro>© 2025 MarioTrainingSolution. Toate drepturile rezervate. Dublin, Irlanda.</p>
+    <p data-en>Built with <span>♥</span> for safety & compliance.</p>
+    <p data-ro>Construit cu <span>♥</span> pentru securitate și conformitate.</p>
+  </div>
+</footer>
 
 <script>
-(() => {
-  "use strict";
-  const canvas = document.getElementById('game');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  const TILE = 24, WORLD = 80;
-  const COLS = Math.floor(W/TILE), ROWS = Math.floor(H/TILE);
-  const DAY_MS = 120000, NIGHT_START=0.55, NIGHT_END=0.95, MAX_NIGHTS=99;
+// ===== LANGUAGE =====
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const btn = lang === 'en' ? document.querySelector('.lang-btn:first-child') : document.querySelector('.lang-btn:last-child');
+  btn.classList.add('active');
+  if (lang === 'ro') document.body.classList.add('lang-ro');
+  else document.body.classList.remove('lang-ro');
+}
 
-  const bDay=document.getElementById('bDay'), bTime=document.getElementById('bTime'), bNights=document.getElementById('bNights'), bSigils=document.getElementById('bSigils');
+// ===== MOBILE MENU =====
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
 
-  // Pure new state
-  let S;
+// ===== SCROLL NAV =====
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
 
-  // Utility
-  const clamp=(v,a,b)=>v<a?a:v>b?b:v;
-  const k=(x,y)=>x+','+y;
-  const rng = (seed => () => (seed = (seed*1664525+1013904223)|0, (seed>>>0)/4294967296))( (Math.random()*1e9)|0 );
-
-  function reset(){
-    S = {
-      start: performance.now(), lastTick: performance.now(), lastPhaseMark: performance.now(),
-      day:1, nights:0, paused:false, running:true, over:false, won:false,
-      p1:{x:(rng()*WORLD)|0, y:(rng()*WORLD)|0}, p2:{x:(rng()*WORLD)|0, y:(rng()*WORLD)|0},
-      inv:{wood:0,stone:0,shovel:0,frame:0,child:0,runes:0,house:0},
-      trees:new Set(), rocks:new Set(), dug:new Set(), enemies:[],
-      runes:[], chamber:null, msg:[], view:1, mini:null,
-    };
-    genWorld();
-    toast("New run: find 3 runes ★, craft a shovel, dig the chamber, rescue the child, build the house.");
-  }
-
-  function phase(){ return ((performance.now()-S.start)%DAY_MS)/DAY_MS; }
-  function isNight(){ const p=phase(); return p>=NIGHT_START && p<=NIGHT_END; }
-  function phaseName(){ const p=phase(); if (p<0.2) return 'Dawn'; if (p<NIGHT_START) return 'Day'; if (p<=NIGHT_END) return 'Night'; return 'Dawn'; }
-
-  function genWorld(){
-    // Populate trees & rocks
-    const dens=0.12;
-    for(let x=0;x<WORLD;x++){
-      for(let y=0;y<WORLD;y++){
-        const r = rng();
-        if (r<dens*0.7) S.trees.add(k(x,y));
-        else if (r<dens) S.rocks.add(k(x,y));
-      }
-    }
-    S.trees.delete(k(S.p1.x,S.p1.y)); S.rocks.delete(k(S.p1.x,S.p1.y));
-    // Place 3 rune shrines
-    for(let i=0;i<3;i++){
-      let x,y;
-      do{ x=(rng()*WORLD)|0; y=(rng()*WORLD)|0; } while(S.trees.has(k(x,y))||S.rocks.has(k(x,y)));
-      S.runes.push({x,y,type:i,done:false});
-    }
-    // Hidden chamber
-    let cx,cy;
-    do{ cx=(rng()*WORLD)|0; cy=(rng()*WORLD)|0; } while(Math.hypot(cx-S.p1.x,cy-S.p1.y)<12);
-    S.chamber={x:cx,y:cy,open:false};
-  }
-
-  function toast(t){ S.msg.push({t,ts:performance.now()}); }
-
-  // Inputs
-  const keys={};
-  addEventListener('keydown',e=>{
-    keys[e.code]=true;
-    if (e.code==='KeyP') S.paused=!S.paused;
-    if (e.code==='KeyR') reset();
-  });
-  addEventListener('keyup',e=>keys[e.code]=false);
-
-  // Top buttons
-  document.getElementById('btnHelp').addEventListener('click',()=>{
-    alert("How to Play:\n- Day/Night every 2 minutes. Avoid outside at night.\n- Chop trees & mine rocks (E) to get wood/stone. Craft shovel to dig (F).\n- Complete 3 rune challenges at ★ to earn runes.\n- Dig to find the chamber and rescue the child (needs 3 runes).\n- Craft a House Frame and interact on clear ground to win.\nControls: P1 WASD/E/F, P2 Arrows/RightShift/RightCtrl. Pause=P, Restart=R.\nLimit: 99 nights.");
-  });
-  document.getElementById('btnRestart').addEventListener('click',reset);
-  document.getElementById('btnPause').addEventListener('click',()=>S.paused=!S.paused);
-  document.getElementById('craft').addEventListener('click',e=>{
-    const b=e.target.closest('button'); if(!b||!b.dataset.craft) return;
-    if (b.dataset.craft==='shovel'){
-      if (S.inv.wood>=3 && S.inv.stone>=2){ S.inv.wood-=3; S.inv.stone-=2; S.inv.shovel++; toast("Crafted a shovel."); }
-      else toast("Need wood3 + stone2.");
-    } else if (b.dataset.craft==='frame'){
-      if (S.inv.wood>=20 && S.inv.stone>=10){ S.inv.wood-=20; S.inv.stone-=10; S.inv.frame++; toast("Crafted a house frame."); }
-      else toast("Need wood20 + stone10.");
+// ===== REVEAL ON SCROLL =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      // Animate skill bars
+      e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
     }
   });
+}, { threshold: 0.1 });
+reveals.forEach(r => io.observe(r));
 
-  // Interact & dig
-  function interact(p){
-    const t=k(p.x,p.y);
-    if (S.trees.has(t)){ S.trees.delete(t); S.inv.wood++; toast("+1 wood"); return; }
-    if (S.rocks.has(t)){ S.rocks.delete(t); S.inv.stone++; toast("+1 stone"); return; }
-    const shr=S.runes.find(s=>s.x===p.x&&s.y===p.y);
-    if (shr){ if (shr.done){ toast("This shrine is quiet."); } else startMini(shr); return; }
-    if (S.chamber.x===p.x && S.chamber.y===p.y){
-      if (!S.chamber.open){
-        if (S.inv.runes>=3){ S.chamber.open=true; S.inv.child=1; toast("You rescued the child! Craft and place a house frame."); }
-        else toast("A sealed chamber. You need 3 runes.");
-      }
-      return;
-    }
-    // Place house if possible
-    if (S.inv.child && S.inv.frame && !S.inv.house){
-      if (S.trees.has(t)||S.rocks.has(t)){ toast("Clear the tile first."); }
-      else { S.inv.frame--; S.inv.house=1; S.won=true; toast("You built a home. THE END ♥"); }
-    }
-  }
-  function dig(p){
-    if (!S.inv.shovel){ toast("You need a shovel to dig."); return; }
-    const t=k(p.x,p.y);
-    if (S.dug.has(t)){ toast("Already dug here."); return; }
-    S.dug.add(t);
-    if (Math.random()<0.1){ S.inv.stone++; toast("You found +1 stone while digging."); }
-    if (S.chamber.x===p.x && S.chamber.y===p.y){ toast("You uncovered an underground chamber entrance."); }
-  }
+// ===== FORM =====
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  const isRo = document.body.classList.contains('lang-ro');
+  btn.innerHTML = isRo ? '✅ Mesaj trimis!' : '✅ Message Sent!';
+  btn.style.background = 'linear-gradient(135deg, #16a34a, #15803d)';
+  setTimeout(() => {
+    btn.innerHTML = isRo ? '✉ Trimite Mesajul' : '✉ Send Message';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
 
-  // Simple minigames — robust, no DOM, drawn on canvas
-  // 0: Tap-the-order (numbers 1..4 appear, click in order)
-  // 1: Key sequence (show a sequence like WASD, press it)
-  // 2: Timer dodge (avoid moving squares for 5s using your player)
-  function startMini(shrine){
-    if (S.mini) return;
-    if (shrine.type===0){
-      const pts=[];
-      for(let i=0;i<4;i++){ pts.push({x:(Math.random()*W)|0, y:(Math.random()*H)|0, n:i+1}); }
-      S.mini={kind:0, shrine, pts, next:1, fail:false, done:false};
-    } else if (shrine.type===1){
-      const seq=['KeyW','KeyA','KeyS','KeyD']; // fixed for simplicity
-      S.mini={kind:1, shrine, seq, idx:0, fail:false, done:false};
-    } else {
-      const obstacles=[]; for(let i=0;i<6;i++){ obstacles.push({x:(Math.random()*W)|0, y:(Math.random()*H)|0, vx:(Math.random()<0.5?-2:2), vy:(Math.random()<0.5?-2:2)}); }
-      const t0=performance.now();
-      S.mini={kind:2, shrine, obstacles, t0, dur:5000, done:false, fail:false};
-    }
-  }
-
-  canvas.addEventListener('mousedown',e=>{
-    if (!S.mini) return;
-    const r=canvas.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top;
-    if (S.mini.kind===0){
-      const hit=S.mini.pts.find(p=>Math.hypot(mx-p.x,my-p.y)<18 && p.n===S.mini.next);
-      if (hit){ S.mini.next++; }
-      else { S.mini.fail=true; }
-      if (S.mini.next>4){ S.mini.done=true; }
-    }
-  });
-  addEventListener('keydown',e=>{
-    if (!S.mini) return;
-    if (S.mini.kind===1){
-      if (e.code===S.mini.seq[S.mini.idx]) S.mini.idx++;
-      else S.mini.fail=true;
-      if (S.mini.idx>=S.mini.seq.length) S.mini.done=true;
-    }
-  });
-
-  function resolveMini(){
-    if (!S.mini) return;
-    const M=S.mini;
-    if (M.done && !M.fail){ M.shrine.done=true; S.inv.runes++; toast("Rune gained! ("+S.inv.runes+"/3)"); S.mini=null; }
-    else if (M.fail){ toast("Challenge failed. Try again later."); S.mini=null; }
-  }
-
-  // Movement & update
-  function update(dt){
-    if (!S.running || S.paused) return;
-
-    // Day/Night bookkeeping
-    const prev=((S.lastPhaseMark-S.start)%DAY_MS)/DAY_MS;
-    const cur=((performance.now()-S.start)%DAY_MS)/DAY_MS;
-    const nightNow = cur>=NIGHT_START && cur<=NIGHT_END;
-    const nightBefore = prev>=NIGHT_START && prev<=NIGHT_END;
-    if (!nightBefore && nightNow){ S.nights++; if (S.nights>MAX_NIGHTS){ S.over=true; S.running=false; } }
-    if (prev<=NIGHT_END && cur>NIGHT_END){ S.day++; }
-    S.lastPhaseMark=performance.now();
-
-    // Player motion
-    const p1=S.p1, p2=S.p2;
-    if (keys['KeyW']) p1.y=clamp(p1.y-1,0,WORLD-1);
-    if (keys['KeyS']) p1.y=clamp(p1.y+1,0,WORLD-1);
-    if (keys['KeyA']) p1.x=clamp(p1.x-1,0,WORLD-1);
-    if (keys['KeyD']) p1.x=clamp(p1.x+1,0,WORLD-1);
-    if (keys['ArrowUp']) p2.y=clamp(p2.y-1,0,WORLD-1);
-    if (keys['ArrowDown']) p2.y=clamp(p2.y+1,0,WORLD-1);
-    if (keys['ArrowLeft']) p2.x=clamp(p2.x-1,0,WORLD-1);
-    if (keys['ArrowRight']) p2.x=clamp(p2.x+1,0,WORLD-1);
-
-    if (keys['KeyE']){ interact(p1); keys['KeyE']=false; }
-    if (keys['ShiftRight']){ interact(p2); keys['ShiftRight']=false; }
-    if (keys['KeyF']){ dig(p1); keys['KeyF']=false; }
-    if (keys['ControlRight']){ dig(p2); keys['ControlRight']=false; }
-
-    // Enemies only at night
-    if (isNight()){
-      if (S.enemies.length<8 && Math.random()<0.03){ S.enemies.push({x:(Math.random()*WORLD)|0,y:(Math.random()*WORLD)|0}); }
-      for(const e of S.enemies){
-        const target = (Math.hypot(e.x-p1.x,e.y-p1.y) < Math.hypot(e.x-p2.x,e.y-p2.y)) ? p1 : p2;
-        e.x += Math.sign(target.x-e.x)*(Math.random()<0.7?1:0);
-        e.y += Math.sign(target.y-e.y)*(Math.random()<0.7?1:0);
-        e.x=clamp(e.x,0,WORLD-1); e.y=clamp(e.y,0,WORLD-1);
-        if (!S.over && ( (e.x===p1.x&&e.y===p1.y) || (e.x===p2.x&&e.y===p2.y) )){ S.over=true; S.running=false; S.endMsg="You were slain by a night creature."; }
-      }
-    } else if (S.enemies.length && Math.random()<0.05){ S.enemies.pop(); }
-
-    // Minigame kind 2 (dodge)
-    if (S.mini && S.mini.kind===2){
-      const M=S.mini;
-      for(const o of M.obstacles){
-        o.x+=o.vx; o.y+=o.vy;
-        if (o.x<10||o.x>W-10) o.vx*=-1;
-        if (o.y<80||o.y>H-10) o.vy*=-1;
-        // collide with follow player (p1)
-        const gx=(S.p1.x - camX())*TILE + TILE/2;
-        const gy=(S.p1.y - camY())*TILE + TILE/2;
-        if (Math.hypot(gx-o.x, gy-o.y)<18) M.fail=true;
-      }
-      if (performance.now()-M.t0 > M.dur) M.done=true;
-    }
-
-    // UI badges
-    bDay.textContent = "Day "+S.day;
-    bTime.textContent = phaseName();
-    bNights.textContent = "Nights left: "+Math.max(0, MAX_NIGHTS-S.nights);
-    bSigils.textContent = "Runes: "+S.inv.runes+"/3";
-  }
-
-  function camX(){ const f=S.view===1?S.p1:S.p2; return clamp(f.x - Math.floor(COLS/2),0,Math.max(0,WORLD-COLS)); }
-  function camY(){ const f=S.view===1?S.p1:S.p2; return clamp(f.y - Math.floor(ROWS/2),0,Math.max(0,WORLD-ROWS)); }
-
-  canvas.addEventListener('contextmenu',e=>{ e.preventDefault(); S.view = (S.view===1?2:1); });
-
-  function draw(){
-    const cX=camX(), cY=camY();
-    const night=isNight();
-    ctx.fillStyle = night ? '#02030a' : '#0b3315';
-    ctx.fillRect(0,0,W,H);
-
-    // World tiles
-    for(let gx=0;gx<COLS;gx++){
-      for(let gy=0;gy<ROWS;gy++){
-        const wx=cX+gx, wy=cY+gy, x=gx*TILE, y=gy*TILE;
-        const t=k(wx,wy);
-        ctx.fillStyle = night ? '#0a1f0e' : '#184b22';
-        ctx.fillRect(x,y,TILE,TILE);
-        if (S.dug.has(t)){ ctx.fillStyle='#3a2f25'; ctx.fillRect(x,y,TILE,TILE); }
-        if (S.trees.has(t)){ ctx.fillStyle='#14532d'; ctx.fillRect(x+4,y+4,TILE-8,TILE-8); }
-        if (S.rocks.has(t)){ ctx.fillStyle='#64748b'; ctx.fillRect(x+6,y+6,TILE-12,TILE-12); }
-        const shrine=S.runes.find(s=>s.x===wx&&s.y===wy);
-        if (shrine){ ctx.fillStyle= shrine.done ? '#22c55e' : '#fbbf24'; ctx.fillRect(x+3,y+3,TILE-6,TILE-6); ctx.fillStyle='#111827'; ctx.fillText('★', x+7, y+18); }
-        if (S.chamber.x===wx && S.chamber.y===wy){ ctx.strokeStyle='#a78bfa'; ctx.strokeRect(x+2,y+2,TILE-4,TILE-4); ctx.fillStyle='#c4b5fd'; ctx.fillText('⛓', x+6, y+18); }
-      }
-    }
-
-    // Enemies
-    for(const e of S.enemies){
-      const gx=e.x-cX, gy=e.y-cY;
-      if (gx>=0&&gy>=0&&gx<COLS&&gy<ROWS){ ctx.fillStyle='#ef4444'; ctx.fillRect(gx*TILE+4, gy*TILE+4, TILE-8, TILE-8); }
-    }
-
-    // Players
-    const drawP=(p,color)=>{ const gx=p.x-cX, gy=p.y-cY; ctx.fillStyle=color; ctx.fillRect(gx*TILE+3, gy*TILE+3, TILE-6, TILE-6); };
-    drawP(S.p1, '#93c5fd'); drawP(S.p2, '#fda4af');
-
-    // Messages
-    let y=H-6;
-    for (let i=S.msg.length-1;i>=0;i--){
-      const m=S.msg[i], age=performance.now()-m.ts;
-      if (age>4000){ S.msg.splice(i,1); continue; }
-      ctx.fillStyle='rgba(0,0,0,.45)'; ctx.fillRect(8,y-18, W-16, 18);
-      ctx.fillStyle='#e5e7eb'; ctx.fillText(m.t, 16, y-4);
-      y-=20;
-    }
-
-    // Minigame drawings
-    if (S.mini){
-      ctx.fillStyle='rgba(0,0,0,.5)'; ctx.fillRect(0,0,W,H);
-      ctx.fillStyle='#e5e7eb'; ctx.font='16px system-ui,Segoe UI,Roboto,Arial';
-      if (S.mini.kind===0){
-        ctx.fillText('Click the numbers in order: 1 → 4', 20, 40);
-        for(const p of S.mini.pts){
-          ctx.beginPath(); ctx.arc(p.x,p.y,18,0,Math.PI*2); ctx.fillStyle='#60a5fa'; ctx.fill();
-          ctx.fillStyle='#0b0d14'; ctx.fillText(String(p.n), p.x-4, p.y+5);
-        }
-        if (S.mini.done || S.mini.fail) resolveMini();
-      } else if (S.mini.kind===1){
-        ctx.fillText('Press the sequence: W A S D', 20, 40);
-        ctx.fillText('Progress: '+S.mini.idx+'/4', 20, 60);
-        if (S.mini.done || S.mini.fail) resolveMini();
-      } else if (S.mini.kind===2){
-        ctx.fillText('Dodge the squares for 5 seconds (move Player 1)', 20, 40);
-        for(const o of S.mini.obstacles){ ctx.fillStyle='#f59e0b'; ctx.fillRect(o.x-10,o.y-10,20,20); }
-        ctx.fillText('Time: '+ Math.max(0, ((S.mini.dur - (performance.now()-S.mini.t0))/1000)|0 )+'s', 20, 60);
-        if (S.mini.done || S.mini.fail) resolveMini();
-      }
-    }
-
-    // Win/Lose
-    if (S.won){
-      ctx.fillStyle='rgba(0,0,0,.7)'; ctx.fillRect(0,0,W,H);
-      ctx.fillStyle='#fff7ed'; ctx.font='bold 64px system-ui,Segoe UI,Roboto,Arial';
-      const m=ctx.measureText('THE END'); ctx.fillText('THE END', (W-m.width)/2, H/2);
-      ctx.font='18px system-ui,Segoe UI,Roboto,Arial'; const t='Press R to Restart'; const m2=ctx.measureText(t); ctx.fillText(t,(W-m2.width)/2, H/2+38);
-    }
-    if (S.over && !S.won){
-      ctx.fillStyle='rgba(0,0,0,.75)'; ctx.fillRect(0,0,W,H);
-      ctx.fillStyle='#ef4444'; ctx.font='bold 58px system-ui,Segoe UI,Roboto,Arial';
-      const o='GAME OVER'; let m=ctx.measureText(o); ctx.fillText(o,(W-m.width)/2, H/2-16);
-      ctx.fillStyle='#e5e7eb'; ctx.font='18px system-ui,Segoe UI,Roboto,Arial';
-      const t=(S.endMsg||''); m=ctx.measureText(t); ctx.fillText(t,(W-m.width)/2, H/2+12);
-      const hint='Press R to Restart'; m=ctx.measureText(hint); ctx.fillText(hint,(W-m.width)/2, H/2+36);
-    }
-
-    if (night){ ctx.fillStyle='rgba(0,0,0,.35)'; ctx.fillRect(0,0,W,H); }
-  }
-
-  let last=performance.now();
-  function loop(ts){
-    const dt=ts-last; last=ts;
-    if (!S.paused) update(dt);
-    draw();
-    requestAnimationFrame(loop);
-  }
-
-  reset();
-  requestAnimationFrame(loop);
-})();
+// ===== COUNTER ANIMATION =====
+function animateCounter(el, target) {
+  let count = 0;
+  const step = target / 50;
+  const timer = setInterval(() => {
+    count += step;
+    if (count >= target) { count = target; clearInterval(timer); }
+    el.textContent = Math.floor(count) + (el.dataset.suffix || '');
+  }, 30);
+}
 </script>
 </body>
 </html>
