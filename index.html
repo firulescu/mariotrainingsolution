@@ -1106,7 +1106,7 @@ body.lang-ro div[data-ro] { display: flex; }
         <div class="contact-item-icon">✉️</div>
         <div class="contact-item-text">
           <h4>Email</h4>
-          <a href="mailto:jhony_barmanu@yahoo.com">jhony_barmanu@yahoo.com</a>
+          <a href="/cdn-cgi/l/email-protection#93f9fbfcfdeaccf1f2e1fef2fde6d3eaf2fbfcfcbdf0fcfe"><span class="__cf_email__" data-cfemail="6e0406010017310c0f1c030f001b2e170f060101400d0103">[email&#160;protected]</span></a>
         </div>
       </div>
       <div class="contact-item">
@@ -1135,32 +1135,32 @@ body.lang-ro div[data-ro] { display: flex; }
       </div>
     </div>
 
-    <form class="contact-form" onsubmit="handleSubmit(event)">
+    <form class="contact-form" action="https://formspree.io/f/mnjgknpj" method="POST">
       <div class="form-row">
         <div class="form-group">
           <label data-en>First Name</label>
           <label data-ro>Prenume</label>
-          <input type="text" placeholder="John" required>
+          <input type="text" name="firstName" placeholder="John" required>
         </div>
         <div class="form-group">
           <label data-en>Last Name</label>
           <label data-ro>Nume</label>
-          <input type="text" placeholder="Doe" required>
+          <input type="text" name="lastName" placeholder="Doe" required>
         </div>
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input type="email" placeholder="john@example.com" required>
+        <input type="email" name="email" placeholder="john@example.com" required>
       </div>
       <div class="form-group">
         <label data-en>Phone</label>
         <label data-ro>Telefon</label>
-        <input type="tel" placeholder="+353...">
+        <input type="tel" name="phone" placeholder="+353...">
       </div>
       <div class="form-group">
         <label data-en>Service Required</label>
         <label data-ro>Serviciu Solicitat</label>
-        <select>
+        <select name="service">
           <option data-en>Select a service...</option>
           <option data-ro>Selectează un serviciu...</option>
           <option data-en>Company Safety Statement</option>
@@ -1180,7 +1180,7 @@ body.lang-ro div[data-ro] { display: flex; }
       <div class="form-group">
         <label data-en>Message</label>
         <label data-ro>Mesaj</label>
-        <textarea data-en placeholder="Tell us about your project, deadline, and any specific requirements..."></textarea>
+        <textarea name="message" data-en placeholder="Tell us about your project, deadline, and any specific requirements..."></textarea>
         <textarea data-ro placeholder="Spune-ne despre proiectul tău, termenul limită și cerințele specifice..."></textarea>
       </div>
       <button type="submit" class="form-submit">
@@ -1209,7 +1209,7 @@ body.lang-ro div[data-ro] { display: flex; }
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===== LANGUAGE =====
 function setLang(lang) {
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -1263,13 +1263,4 @@ function handleSubmit(e) {
 // ===== COUNTER ANIMATION =====
 function animateCounter(el, target) {
   let count = 0;
-  const step = target / 50;
-  const timer = setInterval(() => {
-    count += step;
-    if (count >= target) { count = target; clearInterval(timer); }
-    el.textContent = Math.floor(count) + (el.dataset.suffix || '');
-  }, 30);
-}
-</script>
-</body>
-</html>
+  con
